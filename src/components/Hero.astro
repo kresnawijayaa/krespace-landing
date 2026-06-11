@@ -1,0 +1,71 @@
+---
+import Icon from "./Icon.astro";
+import { whatsappUrl } from "../data/site";
+---
+
+<section class="relative overflow-hidden px-4 pb-20 pt-32 md:px-8">
+  <div class="absolute right-10 top-20 -z-10 h-64 w-64 rounded-full bg-brand-blue/10 blur-3xl"></div>
+  <div class="absolute bottom-10 left-10 -z-10 h-72 w-72 rounded-full bg-brand-purple/10 blur-3xl"></div>
+
+  <div class="mx-auto grid max-w-6xl items-center gap-12 md:grid-cols-2">
+    <div class="z-10 space-y-8">
+      <div class="space-y-4">
+        <h1 class="text-5xl font-extrabold leading-tight tracking-tight md:text-6xl">
+          Website & sistem sederhana untuk kerja yang lebih <span class="relative inline-block text-brand-blue">rapi.<svg class="absolute -bottom-1 left-0 h-3 w-full text-brand-blue" viewBox="0 0 100 10" preserveAspectRatio="none" aria-hidden="true"><path d="M0 5 Q 50 10 100 5" stroke="currentColor" stroke-width="4" fill="none"></path></svg></span>
+        </h1>
+        <p class="max-w-lg text-lg font-medium leading-relaxed text-gray-700 md:text-xl">
+          Kami bantu bikin website, dashboard, invoice, stok, booking, dan sistem internal kecil yang mudah dipakai sehari-hari.
+        </p>
+      </div>
+
+      <div class="flex flex-col gap-4 sm:flex-row">
+        <a href={whatsappUrl} target="_blank" rel="noopener noreferrer" class="neo-btn bg-brand-green px-8 py-3 text-lg text-white">Konsultasi via WhatsApp</a>
+        <a href="/demo" class="neo-btn bg-white px-8 py-3 text-lg hover:bg-gray-50">Lihat Demo</a>
+      </div>
+
+      <div class="pt-4">
+        <div class="flex flex-wrap gap-2">
+          <span class="neo-badge">Website</span>
+          <span class="neo-badge bg-blue-50">Dashboard</span>
+          <span class="neo-badge bg-green-50">Invoice</span>
+          <span class="neo-badge bg-yellow-50">Stock</span>
+          <span class="neo-badge bg-purple-50">Booking</span>
+          <span class="neo-badge">Monitoring</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="relative z-10 hidden w-full md:block" aria-label="Mockup dashboard sistem internal Krespace">
+      <div class="absolute -right-4 -top-4 z-0 h-full w-full rounded-2xl bg-brand-yellow neo-border"></div>
+      <div class="mockup-window relative z-10 flex h-[400px] flex-col shadow-neo-lg">
+        <div class="mockup-header">
+          <div class="mockup-dot bg-red-400"></div>
+          <div class="mockup-dot bg-yellow-400"></div>
+          <div class="mockup-dot bg-green-400"></div>
+        </div>
+        <div class="flex flex-1 bg-gray-50">
+          <div class="flex w-16 flex-col items-center gap-6 border-r-2 border-dark bg-white py-4">
+            <div class="h-8 w-8 rounded bg-dark"></div>
+            <div class="h-6 w-6 rounded bg-gray-200"></div>
+            <div class="h-6 w-6 rounded bg-brand-blue"></div>
+            <div class="h-6 w-6 rounded bg-gray-200"></div>
+          </div>
+          <div class="flex-1 space-y-4 p-6">
+            <div class="mb-6 flex items-center justify-between">
+              <div class="h-6 w-32 rounded bg-gray-200"></div>
+              <div class="h-8 w-24 rounded bg-dark neo-border"></div>
+            </div>
+            <div class="grid grid-cols-3 gap-4">
+              <div class="flex h-24 flex-col justify-between rounded-xl bg-white p-4 neo-border"><div class="h-2 w-10 rounded bg-gray-200"></div><div class="h-6 w-16 rounded bg-dark"></div></div>
+              <div class="flex h-24 flex-col justify-between rounded-xl border-2 border-dark bg-brand-blue p-4 text-white shadow-neo-sm"><div class="h-2 w-10 rounded bg-blue-200"></div><div class="h-6 w-16 rounded bg-white"></div></div>
+              <div class="flex h-24 flex-col justify-between rounded-xl bg-white p-4 neo-border"><div class="h-2 w-10 rounded bg-gray-200"></div><div class="h-6 w-16 rounded bg-dark"></div></div>
+            </div>
+            <div class="mt-4 h-32 rounded-xl bg-white p-4 neo-border">
+              <div class="flex h-full w-full items-center justify-center rounded border-2 border-dashed border-gray-300 text-sm font-bold text-gray-400">Data Table Area</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,32 @@
+---
+import SEO from "../components/SEO.astro";
+import "../styles/global.css";
+
+interface Props {
+  title?: string;
+  description?: string;
+  canonicalPath?: string;
+  jsonLd?: Record<string, unknown>;
+}
+
+const { title, description, canonicalPath, jsonLd } = Astro.props;
+---
+
+<!doctype html>
+<html lang="id" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <SEO title={title} description={description} canonicalPath={canonicalPath} jsonLd={jsonLd} />
+  </head>
+  <body class="font-sans antialiased selection:bg-brand-blue selection:text-white">
+    <slot />
+  </body>
+</html>

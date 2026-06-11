@@ -1,0 +1,21 @@
+---
+import Icon from "./Icon.astro";
+import { site } from "../data/site";
+---
+
+<footer class="border-t-2 border-dark bg-white px-4 py-12 md:px-8">
+  <div class="mx-auto flex max-w-6xl flex-col items-center justify-between gap-6 md:flex-row">
+    <a href="/" class="flex items-center gap-2">
+      <div class="flex h-8 w-8 items-center justify-center rounded-lg bg-dark text-white neo-border">
+        <Icon name="Blocks" class="h-5 w-5" />
+      </div>
+      <span class="text-xl font-extrabold tracking-tight">Krespace.</span>
+    </a>
+    <div class="flex gap-6 text-sm font-bold text-gray-600">
+      <a href="/#solusi" class="hover:text-dark">Solusi</a>
+      <a href="/demo" class="hover:text-dark">Demo</a>
+      <a href="/#harga" class="hover:text-dark">Harga</a>
+    </div>
+    <div class="text-sm font-medium text-gray-500">&copy; {site.copyrightYear} Krespace Studio. All rights reserved.</div>
+  </div>
+</footer>

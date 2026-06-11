@@ -1,0 +1,47 @@
+---
+import Icon from "./Icon.astro";
+import { whatsappUrl } from "../data/site";
+
+interface Props {
+  h1: string;
+  lead: string;
+  bullets: string[];
+}
+
+const { h1, lead, bullets } = Astro.props;
+---
+
+<main class="px-4 pb-20 pt-32 md:px-8">
+  <section class="mx-auto grid max-w-6xl gap-10 md:grid-cols-[1.15fr_0.85fr] md:items-center">
+    <div class="space-y-7">
+      <h1 class="text-4xl font-extrabold leading-tight tracking-tight md:text-6xl">{h1}</h1>
+      <p class="max-w-2xl text-lg font-medium leading-relaxed text-gray-700 md:text-xl">{lead}</p>
+      <div class="flex flex-col gap-4 sm:flex-row">
+        <a href={whatsappUrl} target="_blank" rel="noopener noreferrer" class="neo-btn bg-brand-green px-8 py-3 text-lg text-white">Konsultasi via WhatsApp</a>
+        <a href="/demo" class="neo-btn bg-white px-8 py-3 text-lg hover:bg-gray-50">Lihat Demo</a>
+      </div>
+    </div>
+
+    <div class="neo-card bg-white p-6">
+      <h2 class="mb-5 text-2xl font-extrabold">Yang biasanya dibutuhkan</h2>
+      <ul class="grid gap-3">
+        {bullets.map((item) => (
+          <li class="flex items-center gap-3 rounded-xl border-2 border-dark bg-gray-50 p-3 font-bold">
+            <Icon name="CheckCircle2" class="h-5 w-5 shrink-0 text-brand-green" />
+            {item}
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <section class="mx-auto mt-16 max-w-6xl rounded-2xl border-2 border-dark bg-yellow-50 p-6 shadow-neo-sm">
+    <h2 class="mb-3 text-2xl font-extrabold">Mulainya dari ngobrol dulu</h2>
+    <p class="mb-6 max-w-3xl font-medium text-gray-700">Ceritakan kebutuhan, contoh alur, atau masalah yang pengin dirapikan. Tidak harus teknis, nanti kita bantu susun bentuk paling simpelnya.</p>
+    <div class="flex flex-wrap gap-3">
+      <a href="/" class="neo-btn bg-white px-5 py-2.5">Homepage</a>
+      <a href="/demo" class="neo-btn bg-white px-5 py-2.5">Demo</a>
+      <a href="/kontak" class="neo-btn bg-dark px-5 py-2.5 text-white">Kontak</a>
+    </div>
+  </section>
+</main>

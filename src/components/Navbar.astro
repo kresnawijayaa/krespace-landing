@@ -1,0 +1,49 @@
+---
+import Icon from "./Icon.astro";
+import { navLinks, whatsappUrl } from "../data/site";
+---
+
+<header class="fixed top-4 z-50 w-full px-4 md:px-8">
+  <nav class="mx-auto flex max-w-6xl items-center justify-between rounded-2xl bg-white px-6 py-4 shadow-neo neo-border" aria-label="Navigasi utama">
+    <a href="/" class="group flex items-center gap-2">
+      <div class="flex h-8 w-8 items-center justify-center rounded-lg bg-dark text-white neo-border transition-transform group-hover:-rotate-6">
+        <Icon name="Blocks" class="h-5 w-5" />
+      </div>
+      <span class="text-xl font-extrabold tracking-tight">Krespace.</span>
+    </a>
+
+    <div class="hidden items-center space-x-8 font-semibold text-gray-700 md:flex">
+      {navLinks.map((link) => <a href={link.href} class="transition-colors hover:text-brand-blue">{link.label}</a>)}
+    </div>
+
+    <div class="hidden md:flex">
+      <a href={whatsappUrl} target="_blank" rel="noopener noreferrer" class="neo-btn gap-2 bg-brand-green px-5 py-2 text-sm text-white">
+        <Icon name="MessageCircle" class="h-4 w-4" /> WhatsApp
+      </a>
+    </div>
+
+    <button class="rounded-lg bg-gray-50 p-2 neo-border md:hidden" type="button" aria-label="Menu" aria-controls="mobile-menu" aria-expanded="false" data-menu-toggle>
+      <Icon name="Menu" class="h-5 w-5" />
+    </button>
+  </nav>
+
+  <div id="mobile-menu" class="mx-auto mt-3 hidden max-w-6xl rounded-2xl bg-white p-4 shadow-neo neo-border md:hidden" data-mobile-menu>
+    <div class="grid gap-3 font-bold text-gray-700">
+      {navLinks.map((link) => <a href={link.href} class="rounded-xl px-3 py-2 hover:bg-blue-50">{link.label}</a>)}
+      <a href={whatsappUrl} target="_blank" rel="noopener noreferrer" class="neo-btn mt-2 gap-2 bg-brand-green px-5 py-3 text-white">
+        <Icon name="MessageCircle" class="h-4 w-4" /> WhatsApp
+      </a>
+    </div>
+  </div>
+</header>
+
+<script>
+  const button = document.querySelector("[data-menu-toggle]");
+  const menu = document.querySelector("[data-mobile-menu]");
+
+  button?.addEventListener("click", () => {
+    const isOpen = button.getAttribute("aria-expanded") === "true";
+    button.setAttribute("aria-expanded", String(!isOpen));
+    menu?.classList.toggle("hidden", isOpen);
+  });
+</script>

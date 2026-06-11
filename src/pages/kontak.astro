@@ -1,0 +1,29 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Navbar from "../components/Navbar.astro";
+import Footer from "../components/Footer.astro";
+import Icon from "../components/Icon.astro";
+import { whatsappUrl } from "../data/site";
+---
+
+<BaseLayout title="Kontak | Krespace Studio" description="Hubungi Krespace Studio untuk konsultasi website, dashboard, invoice, stok, booking, atau sistem internal sederhana." canonicalPath="/kontak">
+  <Navbar />
+  <main class="px-4 pb-20 pt-32 md:px-8">
+    <section class="mx-auto max-w-4xl text-center">
+      <div class="neo-card bg-white p-8 md:p-12">
+        <h1 class="mb-5 text-4xl font-extrabold leading-tight tracking-tight md:text-6xl">Ngobrol dulu soal project kamu</h1>
+        <p class="mx-auto mb-8 max-w-2xl text-lg font-medium leading-relaxed text-gray-700">
+          Ceritakan kebutuhan website atau sistem yang ingin dibuat. Tidak harus teknis. Nanti kita bantu lihat scope, batasan, dan estimasi awalnya.
+        </p>
+        <a href={whatsappUrl} target="_blank" rel="noopener noreferrer" class="neo-btn bg-brand-green px-8 py-4 text-lg text-white">
+          <Icon name="MessageCircle" class="mr-2 h-5 w-5" /> Konsultasi via WhatsApp
+        </a>
+      </div>
+      <div class="mt-8 flex flex-wrap justify-center gap-3">
+        <a href="/" class="neo-btn bg-white px-5 py-2.5">Homepage</a>
+        <a href="/demo" class="neo-btn bg-white px-5 py-2.5">Demo</a>
+      </div>
+    </section>
+  </main>
+  <Footer />
+</BaseLayout>

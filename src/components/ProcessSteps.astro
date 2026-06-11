@@ -1,0 +1,24 @@
+---
+const steps = [
+  ["1", "Ngobrol dulu", "Ceritakan proses kerja atau masalah yang ingin dirapikan.", "bg-brand-yellow"],
+  ["2", "Susun scope", "Kami bantu tentukan fitur, batasan, estimasi waktu, dan biaya.", "bg-brand-purple text-white"],
+  ["3", "Build & Review", "Sistem dibuat bertahap dan bisa dicek selama proses pengerjaan.", "bg-brand-blue text-white"],
+  ["4", "Launch", "Sistem dipublish online dan bisa mulai digunakan oleh tim.", "bg-brand-green text-white"],
+];
+---
+
+<section id="cara-kerja" class="border-y-2 border-dark bg-white px-4 py-20 md:px-8">
+  <div class="mx-auto max-w-6xl">
+    <h2 class="mb-16 text-center text-3xl font-extrabold md:text-4xl">Cara Kerja</h2>
+    <div class="relative grid gap-8 md:grid-cols-4">
+      <div class="absolute left-12 right-12 top-6 -z-0 hidden h-1 border-b-2 border-dark bg-dark md:block"></div>
+      {steps.map(([number, title, description, className]) => (
+        <div class="group relative z-10 flex flex-col items-center text-center">
+          <div class={`mb-6 flex h-14 w-14 items-center justify-center rounded-full text-xl font-bold shadow-neo transition-transform neo-border group-hover:scale-110 ${className}`}>{number}</div>
+          <h3 class="mb-2 text-lg font-bold">{title}</h3>
+          <p class="text-sm text-gray-600">{description}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

@@ -1,0 +1,34 @@
+---
+import { site, organizationSchema } from "../data/site";
+
+interface Props {
+  title?: string;
+  description?: string;
+  canonicalPath?: string;
+  jsonLd?: Record<string, unknown>;
+}
+
+const {
+  title = site.defaultSeoTitle,
+  description = site.defaultSeoDescription,
+  canonicalPath = Astro.url.pathname,
+  jsonLd = organizationSchema,
+} = Astro.props;
+
+const canonicalUrl = new URL(canonicalPath, site.siteUrl).toString();
+const ogImage = new URL(site.ogImage, site.siteUrl).toString();
+---
+
+<title>{title}</title>
+<meta name="description" content={description} />
+<link rel="canonical" href={canonicalUrl} />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:type" content="website" />
+<meta property="og:url" content={canonicalUrl} />
+<meta property="og:image" content={ogImage} />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content={title} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={ogImage} />
+<script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />

@@ -1,0 +1,21 @@
+---
+import Icon from "./Icon.astro";
+import { services } from "../data/services";
+---
+
+<section id="solusi" class="bg-white px-4 py-20 md:px-8">
+  <div class="mx-auto max-w-6xl">
+    <h2 class="mb-12 text-center text-3xl font-extrabold md:text-left md:text-4xl">Yang bisa kami bantu</h2>
+    <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+      {services.map((service) => (
+        <a href={service.href} class="rounded-xl border-2 border-dark bg-white p-6 shadow-neo transition-transform hover:-translate-y-1">
+          <div class="mb-4 flex items-center gap-3">
+            <Icon name={service.icon} class={`h-6 w-6 ${service.iconClass}`} />
+            <h3 class="text-xl font-bold">{service.title}</h3>
+          </div>
+          <p class="text-gray-600">{service.description}</p>
+        </a>
+      ))}
+    </div>
+  </div>
+</section>

@@ -1,0 +1,23 @@
+---
+import Icon from "./Icon.astro";
+import { needCards } from "../data/services";
+---
+
+<section class="border-y-2 border-dark bg-white px-4 py-20 md:px-8">
+  <div class="mx-auto max-w-6xl">
+    <h2 class="mb-12 text-center text-3xl font-extrabold md:text-4xl">Lagi butuh yang mana?</h2>
+    <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+      {needCards.map((card) => (
+        <div class="neo-card flex flex-col gap-4 p-6">
+          <div class={`flex h-12 w-12 items-center justify-center rounded-xl border-2 border-dark shadow-neo-sm ${card.bgClass}`}>
+            <Icon name={card.icon} class={`h-6 w-6 ${card.iconClass}`} />
+          </div>
+          <div>
+            <h3 class="mb-2 text-lg font-bold">{card.title}</h3>
+            <p class="text-sm text-gray-600">{card.description}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

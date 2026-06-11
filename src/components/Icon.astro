@@ -1,0 +1,73 @@
+---
+import {
+  Activity,
+  ArrowRight,
+  Blocks,
+  Calendar,
+  CheckCircle2,
+  Clock,
+  ClipboardList,
+  Database,
+  FileSpreadsheet,
+  FileWarning,
+  Filter,
+  FolderCheck,
+  Gift,
+  Globe,
+  Heart,
+  HelpCircle,
+  Info,
+  LayoutDashboard,
+  LayoutTemplate,
+  Lightbulb,
+  Menu,
+  MessageCircle,
+  MessageSquare,
+  Package,
+  Receipt,
+  SearchX,
+  User,
+  XCircle,
+} from "lucide-astro";
+
+const icons = {
+  Activity,
+  ArrowRight,
+  Blocks,
+  Calendar,
+  CheckCircle2,
+  Clock,
+  ClipboardList,
+  Database,
+  FileSpreadsheet,
+  FileWarning,
+  Filter,
+  FolderCheck,
+  Gift,
+  Globe,
+  Heart,
+  HelpCircle,
+  Info,
+  LayoutDashboard,
+  LayoutTemplate,
+  Lightbulb,
+  Menu,
+  MessageCircle,
+  MessageSquare,
+  Package,
+  Receipt,
+  SearchX,
+  User,
+  XCircle,
+};
+
+interface Props {
+  name: keyof typeof icons | string;
+  class?: string;
+}
+
+const { name, class: className = "w-5 h-5" } = Astro.props;
+const Component = icons[name as keyof typeof icons] ?? HelpCircle;
+---
+
+<Component class={className} aria-hidden="true" />

@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Krespace Studio | Website & Sistem Sederhana</title>
+    
+    <!-- Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                    },
+                    colors: {
+                        base: '#FAFAFA',
+                        dark: '#111827', // Black/Navy for borders
+                        brand: {
+                            blue: '#3B82F6',
+                            green: '#10B981', // WhatsApp/Success
+                            yellow: '#FBBF24', // Warning/Alert
+                            purple: '#8B5CF6',
+                            orange: '#F97316'
+                        }
+                    },
+                    boxShadow: {
+                        'neo-sm': '3px 3px 0px 0px rgba(17, 24, 39, 1)',
+                        'neo': '5px 5px 0px 0px rgba(17, 24, 39, 1)',
+                        'neo-lg': '8px 8px 0px 0px rgba(17, 24, 39, 1)',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #FAFAFA;
+            color: #111827;
+        }
+
+        /* Reusable Neo-Brutalist Components */
+        .neo-border {
+            border: 2.5px solid #111827;
+        }
+
+        .neo-card {
+            background-color: white;
+            border: 2.5px solid #111827;
+            box-shadow: 5px 5px 0px 0px #111827;
+            border-radius: 1.25rem;
+            transition: all 0.2s ease-in-out;
+        }
+
+        .neo-card:hover {
+            transform: translate(-3px, -3px);
+            box-shadow: 8px 8px 0px 0px #111827;
+        }
+
+        .neo-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            border: 2.5px solid #111827;
+            border-radius: 0.75rem;
+            box-shadow: 4px 4px 0px 0px #111827;
+            transition: all 0.15s ease;
+            cursor: pointer;
+        }
+
+        .neo-btn:hover {
+            transform: translate(-2px, -2px);
+            box-shadow: 6px 6px 0px 0px #111827;
+        }
+
+        .neo-btn:active {
+            transform: translate(2px, 2px);
+            box-shadow: 0px 0px 0px 0px #111827;
+        }
+
+        .neo-badge {
+            display: inline-flex;
+            align-items: center;
+            font-size: 0.75rem;
+            font-weight: 700;
+            padding: 0.25rem 0.75rem;
+            border: 2px solid #111827;
+            border-radius: 9999px;
+            box-shadow: 2px 2px 0px 0px #111827;
+            background-color: white;
+        }
+
+        /* Mockup Specific Styles */
+        .mockup-window {
+            border: 2.5px solid #111827;
+            border-radius: 1rem;
+            overflow: hidden;
+            background-color: white;
+        }
+        .mockup-header {
+            border-bottom: 2.5px solid #111827;
+            padding: 0.75rem;
+            display: flex;
+            gap: 0.5rem;
+            background-color: #F3F4F6;
+        }
+        .mockup-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            border: 2px solid #111827;
+        }
+    </style>
+</head>
+<body class="antialiased selection:bg-brand-blue selection:text-white">
+
+    <nav class="fixed w-full top-4 z-50 px-4 md:px-8">
+        <div class="max-w-6xl mx-auto bg-white neo-border rounded-2xl shadow-neo px-6 py-4 flex items-center justify-between">
+            
+            <!-- Logo -->
+            <a href="#" class="flex items-center gap-2 group">
+                <div class="bg-dark text-white w-8 h-8 rounded-lg flex items-center justify-center neo-border group-hover:-rotate-6 transition-transform">
+                    <i data-lucide="blocks" class="w-5 h-5"></i>
+                </div>
+                <span class="text-xl font-extrabold tracking-tight">Krespace.</span>
+            </a>
+
+            <!-- Desktop Menu -->
+            <div class="hidden md:flex items-center space-x-8 font-semibold text-gray-700">
+                <a href="#solusi" class="hover:text-brand-blue transition-colors">Solusi</a>
+                <a href="#demo" class="hover:text-brand-blue transition-colors">Demo</a>
+                <a href="#cara-kerja" class="hover:text-brand-blue transition-colors">Cara Kerja</a>
+                <a href="#harga" class="hover:text-brand-blue transition-colors">Estimasi Harga</a>
+            </div>
+
+            <!-- CTA Desktop -->
+            <div class="hidden md:flex">
+                <a href="#" class="neo-btn bg-brand-green px-5 py-2 text-white gap-2 text-sm">
+                    <i data-lucide="message-circle" class="w-4 h-4"></i> WhatsApp
+                </a>
+            </div>
+
+            <!-- Mobile Menu Toggle -->
+            <button class="md:hidden p-2 neo-border rounded-lg bg-gray-50" aria-label="Menu">
+                <i data-lucide="menu" class="w-5 h-5"></i>
+            </button>
+        </div>
+    </nav>
+
+    <section class="pt-32 pb-20 px-4 md:px-8 overflow-hidden relative">
+        <!-- Background Decor -->
+        <div class="absolute top-20 right-10 w-64 h-64 bg-brand-blue/10 rounded-full blur-3xl -z-10"></div>
+        <div class="absolute bottom-10 left-10 w-72 h-72 bg-brand-purple/10 rounded-full blur-3xl -z-10"></div>
+
+        <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-center">
+            
+            <!-- Left: Text Content -->
+            <div class="space-y-8 z-10">
+                <div class="space-y-4">
+                    <h1 class="text-5xl md:text-6xl font-extrabold leading-tight tracking-tight">
+                        Website & sistem sederhana untuk kerja yang lebih <span class="text-brand-blue inline-block relative">rapi.<svg class="absolute w-full h-3 -bottom-1 left-0 text-brand-blue" viewBox="0 0 100 10" preserveAspectRatio="none"><path d="M0 5 Q 50 10 100 5" stroke="currentColor" stroke-width="4" fill="none"/></svg></span>
+                    </h1>
+                    <p class="text-lg md:text-xl text-gray-700 font-medium leading-relaxed max-w-lg">
+                        Kami bantu bikin website, dashboard, invoice, stok, booking, dan sistem internal kecil yang mudah dipakai sehari-hari.
+                    </p>
+                </div>
+
+                <div class="flex flex-col sm:flex-row gap-4">
+                    <a href="#" class="neo-btn bg-brand-green text-white px-8 py-3 text-lg">
+                        Konsultasi via WhatsApp
+                    </a>
+                    <a href="#demo" class="neo-btn bg-white px-8 py-3 text-lg hover:bg-gray-50">
+                        Lihat Demo
+                    </a>
+                </div>
+
+                <div class="pt-4">
+                    <div class="flex flex-wrap gap-2">
+                        <span class="neo-badge">Website</span>
+                        <span class="neo-badge bg-blue-50">Dashboard</span>
+                        <span class="neo-badge bg-green-50">Invoice</span>
+                        <span class="neo-badge bg-yellow-50">Stock</span>
+                        <span class="neo-badge bg-purple-50">Booking</span>
+                        <span class="neo-badge">Monitoring</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right: Visual Mockup -->
+            <div class="relative w-full z-10 hidden md:block">
+                <!-- Decorative behind mockup -->
+                <div class="absolute -top-4 -right-4 w-full h-full bg-brand-yellow neo-border rounded-2xl z-0"></div>
+                
+                <div class="mockup-window relative z-10 shadow-neo-lg h-[400px] flex flex-col">
+                    <div class="mockup-header">
+                        <div class="mockup-dot bg-red-400"></div>
+                        <div class="mockup-dot bg-yellow-400"></div>
+                        <div class="mockup-dot bg-green-400"></div>
+                    </div>
+                    <!-- Dashboard Dummy UI -->
+                    <div class="flex-1 bg-gray-50 flex">
+                        <!-- Sidebar -->
+                        <div class="w-16 border-r-2 border-dark bg-white flex flex-col items-center py-4 gap-6">
+                            <div class="w-8 h-8 rounded bg-dark"></div>
+                            <div class="w-6 h-6 rounded bg-gray-200"></div>
+                            <div class="w-6 h-6 rounded bg-brand-blue"></div>
+                            <div class="w-6 h-6 rounded bg-gray-200"></div>
+                        </div>
+                        <!-- Main Content -->
+                        <div class="flex-1 p-6 space-y-4">
+                            <div class="flex justify-between items-center mb-6">
+                                <div class="w-32 h-6 bg-gray-200 rounded"></div>
+                                <div class="w-24 h-8 bg-dark rounded neo-border"></div>
+                            </div>
+                            <div class="grid grid-cols-3 gap-4">
+                                <div class="h-24 bg-white neo-border rounded-xl p-4 flex flex-col justify-between">
+                                    <div class="w-10 h-2 bg-gray-200 rounded"></div>
+                                    <div class="w-16 h-6 bg-dark rounded"></div>
+                                </div>
+                                <div class="h-24 bg-brand-blue text-white border-2 border-dark rounded-xl p-4 flex flex-col justify-between shadow-neo-sm">
+                                    <div class="w-10 h-2 bg-blue-200 rounded"></div>
+                                    <div class="w-16 h-6 bg-white rounded"></div>
+                                </div>
+                                <div class="h-24 bg-white neo-border rounded-xl p-4 flex flex-col justify-between">
+                                    <div class="w-10 h-2 bg-gray-200 rounded"></div>
+                                    <div class="w-16 h-6 bg-dark rounded"></div>
+                                </div>
+                            </div>
+                            <div class="h-32 bg-white neo-border rounded-xl p-4 mt-4">
+                                <div class="w-full h-full border-2 border-dashed border-gray-300 rounded flex items-center justify-center text-gray-400 font-bold text-sm">
+                                    Data Table Area
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- 2. Lagi butuh yang mana? (Problem Section) -->
+    <section class="py-20 px-4 md:px-8 bg-white border-y-2 border-dark">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-3xl md:text-4xl font-extrabold text-center mb-12">Lagi butuh yang mana?</h2>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Card 1 -->
+                <div class="neo-card p-6 flex flex-col gap-4">
+                    <div class="w-12 h-12 bg-red-100 rounded-xl border-2 border-dark flex items-center justify-center shadow-neo-sm">
+                        <i data-lucide="file-warning" class="w-6 h-6 text-red-600"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-bold mb-2">Data masih berantakan</h3>
+                        <p class="text-gray-600 text-sm">Terlalu banyak file Excel, chat, dan catatan manual.</p>
+                    </div>
+                </div>
+                
+                <!-- Card 2 -->
+                <div class="neo-card p-6 flex flex-col gap-4">
+                    <div class="w-12 h-12 bg-orange-100 rounded-xl border-2 border-dark flex items-center justify-center shadow-neo-sm">
+                        <i data-lucide="clock" class="w-6 h-6 text-orange-600"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-bold mb-2">Laporan makan waktu</h3>
+                        <p class="text-gray-600 text-sm">Setiap minggu atau bulan harus rekap ulang dari awal.</p>
+                    </div>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="neo-card p-6 flex flex-col gap-4">
+                    <div class="w-12 h-12 bg-yellow-100 rounded-xl border-2 border-dark flex items-center justify-center shadow-neo-sm">
+                        <i data-lucide="help-circle" class="w-6 h-6 text-yellow-600"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-bold mb-2">Status kerja tidak jelas</h3>
+                        <p class="text-gray-600 text-sm">Sulit tahu pekerjaan mana yang belum, sedang, atau sudah selesai.</p>
+                    </div>
+                </div>
+
+                <!-- Card 4 -->
+                <div class="neo-card p-6 flex flex-col gap-4">
+                    <div class="w-12 h-12 bg-blue-100 rounded-xl border-2 border-dark flex items-center justify-center shadow-neo-sm">
+                        <i data-lucide="globe" class="w-6 h-6 text-blue-600"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-bold mb-2">Bisnis belum tampil online</h3>
+                        <p class="text-gray-600 text-sm">Sudah jalan, tapi belum punya website yang rapi dan mudah dibagikan.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. Before -> After Section (Dari Manual ke Lebih Rapi) -->
+    <section class="py-20 px-4 md:px-8 bg-gray-50 border-b-2 border-dark">
+        <div class="max-w-5xl mx-auto">
+            <h2 class="text-3xl md:text-4xl font-extrabold text-center mb-16">Dari Manual ke Lebih Rapi</h2>
+            
+            <div class="flex flex-col md:flex-row gap-8 items-stretch relative">
+                <!-- Arrow connecting them (desktop) -->
+                <div class="hidden md:flex absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-12 h-12 bg-white border-2 border-dark rounded-full items-center justify-center z-10 shadow-neo-sm text-dark">
+                    <i data-lucide="arrow-right" class="w-6 h-6"></i>
+                </div>
+
+                <!-- Before -->
+                <div class="flex-1 bg-white border-2 border-dark rounded-2xl p-8 shadow-[6px_6px_0px_0px_#ef4444] relative hover:-translate-y-1 transition-transform">
+                    <div class="absolute -top-5 left-8 px-4 py-1 bg-red-100 text-red-700 font-bold rounded-full border-2 border-dark shadow-neo-sm flex items-center gap-2">
+                        <i data-lucide="x-circle" class="w-4 h-4"></i> Sebelum
+                    </div>
+                    <ul class="space-y-5 mt-4">
+                        <li class="flex items-center gap-3 text-gray-700 font-medium">
+                            <i data-lucide="file-spreadsheet" class="w-6 h-6 text-red-500 shrink-0"></i> Data tersebar di Excel
+                        </li>
+                        <li class="flex items-center gap-3 text-gray-700 font-medium">
+                            <i data-lucide="message-square" class="w-6 h-6 text-red-500 shrink-0"></i> Status pekerjaan tanya lewat chat
+                        </li>
+                        <li class="flex items-center gap-3 text-gray-700 font-medium">
+                            <i data-lucide="clipboard-list" class="w-6 h-6 text-red-500 shrink-0"></i> Rekap laporan manual
+                        </li>
+                        <li class="flex items-center gap-3 text-gray-700 font-medium">
+                            <i data-lucide="search-x" class="w-6 h-6 text-red-500 shrink-0"></i> Dokumen sulit dicari
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- After -->
+                <div class="flex-1 bg-brand-blue text-white border-2 border-dark rounded-2xl p-8 shadow-[6px_6px_0px_0px_#111827] relative hover:-translate-y-1 transition-transform">
+                    <div class="absolute -top-5 left-8 px-4 py-1 bg-blue-400/20 backdrop-blur-sm text-white font-bold rounded-full border-2 border-white shadow-[4px_4px_0px_0px_rgba(255,255,255,0.3)] flex items-center gap-2">
+                        <i data-lucide="check-circle-2" class="w-4 h-4"></i> Sesudah
+                    </div>
+                    <ul class="space-y-5 mt-4">
+                        <li class="flex items-center gap-3 text-blue-50 font-medium">
+                            <i data-lucide="database" class="w-6 h-6 text-brand-yellow shrink-0"></i> Data tersimpan di sistem
+                        </li>
+                        <li class="flex items-center gap-3 text-blue-50 font-medium">
+                            <i data-lucide="layout-dashboard" class="w-6 h-6 text-brand-yellow shrink-0"></i> Status terlihat di dashboard
+                        </li>
+                        <li class="flex items-center gap-3 text-blue-50 font-medium">
+                            <i data-lucide="filter" class="w-6 h-6 text-brand-yellow shrink-0"></i> Laporan bisa difilter/export
+                        </li>
+                        <li class="flex items-center gap-3 text-blue-50 font-medium">
+                            <i data-lucide="folder-check" class="w-6 h-6 text-brand-yellow shrink-0"></i> Dokumen tersimpan per data
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="mt-12 text-center max-w-2xl mx-auto">
+                <p class="text-gray-700 font-medium text-lg bg-yellow-50 border-2 border-dark rounded-xl p-4 shadow-neo-sm">
+                    <i data-lucide="lightbulb" class="inline-block w-5 h-5 text-brand-yellow mr-1 -mt-1"></i>
+                    Banyak sistem tidak harus besar. Kadang yang dibutuhkan hanya tempat kerja yang lebih rapi, jelas, dan mudah dicek.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. Yang bisa kami bantu (Solution Section) -->
+    <section id="solusi" class="py-20 px-4 md:px-8 bg-white">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-3xl md:text-4xl font-extrabold mb-12 text-center md:text-left">Yang bisa kami bantu</h2>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Sol 1 -->
+                <div class="bg-white border-2 border-dark rounded-xl p-6 shadow-neo hover:-translate-y-1 transition-transform">
+                    <div class="flex items-center gap-3 mb-4">
+                        <i data-lucide="layout-template" class="w-6 h-6 text-brand-blue"></i>
+                        <h3 class="text-xl font-bold">Website Profil</h3>
+                    </div>
+                    <p class="text-gray-600">Untuk bisnis, komunitas, organisasi, event, atau portfolio yang siap tampil online.</p>
+                </div>
+
+                <!-- Sol 2 -->
+                <div class="bg-white border-2 border-dark rounded-xl p-6 shadow-neo hover:-translate-y-1 transition-transform">
+                    <div class="flex items-center gap-3 mb-4">
+                        <i data-lucide="database" class="w-6 h-6 text-brand-purple"></i>
+                        <h3 class="text-xl font-bold">Sistem Admin</h3>
+                    </div>
+                    <p class="text-gray-600">Untuk input data, melihat dashboard visual, mencetak laporan, dan export file.</p>
+                </div>
+
+                <!-- Sol 3 -->
+                <div class="bg-white border-2 border-dark rounded-xl p-6 shadow-neo hover:-translate-y-1 transition-transform">
+                    <div class="flex items-center gap-3 mb-4">
+                        <i data-lucide="receipt" class="w-6 h-6 text-brand-green"></i>
+                        <h3 class="text-xl font-bold">Invoice System</h3>
+                    </div>
+                    <p class="text-gray-600">Untuk membuat tagihan otomatis, cek status pembayaran, dan laporan bulanan.</p>
+                </div>
+
+                <!-- Sol 4 -->
+                <div class="bg-white border-2 border-dark rounded-xl p-6 shadow-neo hover:-translate-y-1 transition-transform">
+                    <div class="flex items-center gap-3 mb-4">
+                        <i data-lucide="package" class="w-6 h-6 text-brand-orange"></i>
+                        <h3 class="text-xl font-bold">Stock System</h3>
+                    </div>
+                    <p class="text-gray-600">Untuk mencatat barang masuk, barang keluar, dan cek sisa stok secara real-time.</p>
+                </div>
+
+                <!-- Sol 5 -->
+                <div class="bg-white border-2 border-dark rounded-xl p-6 shadow-neo hover:-translate-y-1 transition-transform">
+                    <div class="flex items-center gap-3 mb-4">
+                        <i data-lucide="calendar" class="w-6 h-6 text-red-500"></i>
+                        <h3 class="text-xl font-bold">Booking System</h3>
+                    </div>
+                    <p class="text-gray-600">Untuk mengelola jadwal layanan, appointment, atau reservasi dengan lebih rapi.</p>
+                </div>
+
+                <!-- Sol 6 -->
+                <div class="bg-white border-2 border-dark rounded-xl p-6 shadow-neo hover:-translate-y-1 transition-transform">
+                    <div class="flex items-center gap-3 mb-4">
+                        <i data-lucide="activity" class="w-6 h-6 text-brand-yellow"></i>
+                        <h3 class="text-xl font-bold">Monitoring System</h3>
+                    </div>
+                    <p class="text-gray-600">Untuk memantau progress pekerjaan, order, request, atau proses operasional.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. Punya ide yang agak beda? -->
+    <section class="py-20 px-4 md:px-8 bg-[#F3E8FF] border-y-2 border-dark">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-12 max-w-2xl mx-auto">
+                <h2 class="text-3xl md:text-4xl font-extrabold mb-4">Punya ide yang agak beda?</h2>
+                <p class="text-gray-700 text-lg">Selain website bisnis dan sistem kerja, kami juga terbuka untuk project digital yang lebih personal atau unik.</p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-10">
+                <div class="bg-white border-2 border-dark rounded-xl p-6 shadow-neo hover:-translate-y-1 transition-transform">
+                    <div class="w-10 h-10 bg-pink-100 border-2 border-dark rounded-lg flex items-center justify-center mb-4 shadow-neo-sm">
+                        <i data-lucide="heart" class="w-5 h-5 text-pink-500"></i>
+                    </div>
+                    <h3 class="text-lg font-bold mb-2">Wedding Website</h3>
+                    <p class="text-gray-600 text-sm">Undangan digital sederhana yang bisa dibagikan lewat link.</p>
+                </div>
+                <div class="bg-white border-2 border-dark rounded-xl p-6 shadow-neo hover:-translate-y-1 transition-transform">
+                    <div class="w-10 h-10 bg-yellow-100 border-2 border-dark rounded-lg flex items-center justify-center mb-4 shadow-neo-sm">
+                        <i data-lucide="gift" class="w-5 h-5 text-yellow-600"></i>
+                    </div>
+                    <h3 class="text-lg font-bold mb-2">Surprise Page</h3>
+                    <p class="text-gray-600 text-sm">Halaman khusus untuk ulang tahun, anniversary, atau hadiah kecil buat orang spesial.</p>
+                </div>
+                <div class="bg-white border-2 border-dark rounded-xl p-6 shadow-neo hover:-translate-y-1 transition-transform">
+                    <div class="w-10 h-10 bg-blue-100 border-2 border-dark rounded-lg flex items-center justify-center mb-4 shadow-neo-sm">
+                        <i data-lucide="user" class="w-5 h-5 text-blue-600"></i>
+                    </div>
+                    <h3 class="text-lg font-bold mb-2">Personal Website</h3>
+                    <p class="text-gray-600 text-sm">Portfolio, CV online, profil pribadi, atau halaman perkenalan.</p>
+                </div>
+                <div class="bg-white border-2 border-dark rounded-xl p-6 shadow-neo hover:-translate-y-1 transition-transform">
+                    <div class="w-10 h-10 bg-green-100 border-2 border-dark rounded-lg flex items-center justify-center mb-4 shadow-neo-sm">
+                        <i data-lucide="lightbulb" class="w-5 h-5 text-green-600"></i>
+                    </div>
+                    <h3 class="text-lg font-bold mb-2">Custom Idea</h3>
+                    <p class="text-gray-600 text-sm">Punya ide random yang pengin dijadiin web? Ceritain dulu aja. Kalau masih masuk akal untuk dibuat, kita bantu pikirkan bentuk paling simpelnya.</p>
+                </div>
+            </div>
+
+            <div class="bg-white border-2 border-dark rounded-xl p-6 text-center max-w-3xl mx-auto shadow-neo-sm">
+                <p class="text-gray-800 font-bold">
+                    Selama masih bisa dibuat dalam bentuk website, halaman interaktif, atau sistem sederhana, kami terbuka untuk ngobrol dulu.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. Demo Project Section (Simplified) -->
+    <section id="demo" class="py-20 px-4 md:px-8 bg-gray-900 text-white border-b-2 border-dark">
+        <div class="max-w-6xl mx-auto">
+            <div class="mb-12 text-center md:text-left">
+                <h2 class="text-3xl md:text-4xl font-extrabold mb-4">Coba lihat contoh sistemnya</h2>
+                <p class="text-gray-400 max-w-2xl text-lg">Beberapa demo menggunakan data fiktif, supaya kamu bisa lihat gambaran nyata sistem yang bisa dibuat.</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Demo Card 1 -->
+                <div class="bg-white text-dark border-2 border-dark rounded-xl p-6 shadow-neo flex flex-col hover:-translate-y-1 transition-transform">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="p-2 bg-blue-100 rounded-lg border-2 border-dark shadow-[2px_2px_0px_0px_#111827]"><i data-lucide="receipt" class="w-5 h-5 text-blue-600"></i></div>
+                        <h3 class="text-xl font-bold">Invoice System</h3>
+                    </div>
+                    <p class="text-gray-600 text-sm mb-4 flex-1">Buat invoice, kelola customer, cek status pembayaran, dan export PDF.</p>
+                    <div class="flex flex-wrap gap-1.5 mb-6">
+                        <span class="text-[10px] font-bold px-2 py-1 bg-gray-100 border-2 border-dark rounded-md">Invoice</span>
+                        <span class="text-[10px] font-bold px-2 py-1 bg-gray-100 border-2 border-dark rounded-md">Customer</span>
+                        <span class="text-[10px] font-bold px-2 py-1 bg-gray-100 border-2 border-dark rounded-md">PDF</span>
+                        <span class="text-[10px] font-bold px-2 py-1 bg-gray-100 border-2 border-dark rounded-md">Payment Status</span>
+                    </div>
+                    <button class="neo-btn bg-dark text-white w-full py-2.5 text-sm">Lihat Demo</button>
+                </div>
+
+                <!-- Demo Card 2 -->
+                <div class="bg-white text-dark border-2 border-dark rounded-xl p-6 shadow-neo flex flex-col hover:-translate-y-1 transition-transform">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="p-2 bg-purple-100 rounded-lg border-2 border-dark shadow-[2px_2px_0px_0px_#111827]"><i data-lucide="activity" class="w-5 h-5 text-purple-600"></i></div>
+                        <h3 class="text-xl font-bold">Monitoring System</h3>
+                    </div>
+                    <p class="text-gray-600 text-sm mb-4 flex-1">Pantau pekerjaan dari awal sampai selesai dalam satu dashboard.</p>
+                    <div class="flex flex-wrap gap-1.5 mb-6">
+                        <span class="text-[10px] font-bold px-2 py-1 bg-gray-100 border-2 border-dark rounded-md">Status</span>
+                        <span class="text-[10px] font-bold px-2 py-1 bg-gray-100 border-2 border-dark rounded-md">Upload File</span>
+                        <span class="text-[10px] font-bold px-2 py-1 bg-gray-100 border-2 border-dark rounded-md">Filter Data</span>
+                        <span class="text-[10px] font-bold px-2 py-1 bg-gray-100 border-2 border-dark rounded-md">Export</span>
+                    </div>
+                    <button class="neo-btn bg-dark text-white w-full py-2.5 text-sm">Lihat Demo</button>
+                </div>
+
+                <!-- Demo Card 3 -->
+                <div class="bg-white text-dark border-2 border-dark rounded-xl p-6 shadow-neo flex flex-col hover:-translate-y-1 transition-transform">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="p-2 bg-orange-100 rounded-lg border-2 border-dark shadow-[2px_2px_0px_0px_#111827]"><i data-lucide="package" class="w-5 h-5 text-orange-600"></i></div>
+                        <h3 class="text-xl font-bold">Stock Management</h3>
+                    </div>
+                    <p class="text-gray-600 text-sm mb-4 flex-1">Catat stok masuk, stok keluar, dan lihat sisa barang dengan lebih mudah.</p>
+                    <div class="flex flex-wrap gap-1.5 mb-6">
+                        <span class="text-[10px] font-bold px-2 py-1 bg-gray-100 border-2 border-dark rounded-md">Barang</span>
+                        <span class="text-[10px] font-bold px-2 py-1 bg-gray-100 border-2 border-dark rounded-md">Stok Masuk</span>
+                        <span class="text-[10px] font-bold px-2 py-1 bg-gray-100 border-2 border-dark rounded-md">Stok Keluar</span>
+                        <span class="text-[10px] font-bold px-2 py-1 bg-gray-100 border-2 border-dark rounded-md">Laporan</span>
+                    </div>
+                    <button class="neo-btn bg-dark text-white w-full py-2.5 text-sm">Lihat Demo</button>
+                </div>
+
+                <!-- Demo Card 4 -->
+                <div class="bg-white text-dark border-2 border-dark rounded-xl p-6 shadow-neo flex flex-col hover:-translate-y-1 transition-transform">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="p-2 bg-green-100 rounded-lg border-2 border-dark shadow-[2px_2px_0px_0px_#111827]"><i data-lucide="calendar" class="w-5 h-5 text-green-600"></i></div>
+                        <h3 class="text-xl font-bold">Booking System</h3>
+                    </div>
+                    <p class="text-gray-600 text-sm mb-4 flex-1">Buat sistem booking sederhana untuk layanan berbasis jadwal.</p>
+                    <div class="flex flex-wrap gap-1.5 mb-6">
+                        <span class="text-[10px] font-bold px-2 py-1 bg-gray-100 border-2 border-dark rounded-md">Jadwal</span>
+                        <span class="text-[10px] font-bold px-2 py-1 bg-gray-100 border-2 border-dark rounded-md">Customer</span>
+                        <span class="text-[10px] font-bold px-2 py-1 bg-gray-100 border-2 border-dark rounded-md">Status Booking</span>
+                        <span class="text-[10px] font-bold px-2 py-1 bg-gray-100 border-2 border-dark rounded-md">Admin Panel</span>
+                    </div>
+                    <button class="neo-btn bg-dark text-white w-full py-2.5 text-sm">Lihat Demo</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 7. Feature Blocks / Tentang Krespace -->
+    <section class="py-20 px-4 md:px-8 bg-white border-b-2 border-dark relative overflow-hidden">
+        <!-- Background Pattern Decor -->
+        <div class="absolute -right-10 -bottom-10 opacity-10">
+            <i data-lucide="blocks" class="w-64 h-64"></i>
+        </div>
+
+        <div class="max-w-4xl mx-auto">
+            <div class="bg-brand-blue text-white neo-card border-dark p-8 md:p-12 flex flex-col justify-center text-center relative z-10">
+                <h2 class="text-3xl font-extrabold mb-6 text-white">Tentang Krespace</h2>
+                <p class="mb-4 leading-relaxed font-medium text-lg">
+                    Krespace Studio adalah studio digital kecil yang membantu membuat website dan sistem sederhana untuk kebutuhan bisnis, operasional, dan administrasi.
+                </p>
+                <p class="mb-8 leading-relaxed text-blue-100">
+                    Kami fokus membantu client yang ingin mulai merapikan proses kerja, terutama yang masih banyak bergantung pada Excel, WhatsApp, atau pencatatan manual.
+                </p>
+                <div class="flex flex-wrap justify-center gap-3">
+                    <span class="neo-badge bg-brand-green border-dark text-white text-sm px-4 py-2">Simple</span>
+                    <span class="neo-badge bg-brand-purple border-dark text-white text-sm px-4 py-2">Custom</span>
+                    <span class="neo-badge bg-brand-orange border-dark text-white text-sm px-4 py-2">Web-based</span>
+                    <span class="neo-badge bg-dark border-white text-white text-sm px-4 py-2">Easy to use</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="cara-kerja" class="py-20 px-4 md:px-8 bg-white border-y-2 border-dark">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-3xl md:text-4xl font-extrabold text-center mb-16">Cara Kerja</h2>
+            
+            <div class="grid md:grid-cols-4 gap-8 relative">
+                <!-- Decorative line for desktop -->
+                <div class="hidden md:block absolute top-6 left-12 right-12 h-1 bg-dark -z-0 border-b-2 border-dark"></div>
+
+                <!-- Step 1 -->
+                <div class="relative z-10 flex flex-col items-center text-center group">
+                    <div class="w-14 h-14 rounded-full bg-brand-yellow neo-border shadow-neo flex items-center justify-center text-xl font-bold mb-6 group-hover:scale-110 transition-transform">1</div>
+                    <h3 class="text-lg font-bold mb-2">Ngobrol dulu</h3>
+                    <p class="text-sm text-gray-600">Ceritakan proses kerja atau masalah yang ingin dirapikan.</p>
+                </div>
+                
+                <!-- Step 2 -->
+                <div class="relative z-10 flex flex-col items-center text-center group">
+                    <div class="w-14 h-14 rounded-full bg-brand-purple text-white neo-border shadow-neo flex items-center justify-center text-xl font-bold mb-6 group-hover:scale-110 transition-transform">2</div>
+                    <h3 class="text-lg font-bold mb-2">Susun scope</h3>
+                    <p class="text-sm text-gray-600">Kami bantu tentukan fitur, batasan, estimasi waktu, dan biaya.</p>
+                </div>
+
+                <!-- Step 3 -->
+                <div class="relative z-10 flex flex-col items-center text-center group">
+                    <div class="w-14 h-14 rounded-full bg-brand-blue text-white neo-border shadow-neo flex items-center justify-center text-xl font-bold mb-6 group-hover:scale-110 transition-transform">3</div>
+                    <h3 class="text-lg font-bold mb-2">Build & Review</h3>
+                    <p class="text-sm text-gray-600">Sistem dibuat bertahap dan bisa dicek selama proses pengerjaan.</p>
+                </div>
+
+                <!-- Step 4 -->
+                <div class="relative z-10 flex flex-col items-center text-center group">
+                    <div class="w-14 h-14 rounded-full bg-brand-green text-white neo-border shadow-neo flex items-center justify-center text-xl font-bold mb-6 group-hover:scale-110 transition-transform">4</div>
+                    <h3 class="text-lg font-bold mb-2">Launch</h3>
+                    <p class="text-sm text-gray-600">Sistem dipublish online dan bisa mulai digunakan oleh tim.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="harga" class="py-20 px-4 md:px-8">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-extrabold mb-4">Estimasi Awal</h2>
+                <p class="text-gray-600">Harga final menyesuaikan fitur, scope, deadline, dan kebutuhan hosting.</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8 items-start">
+                
+                <!-- Pricing 1 -->
+                <div class="bg-white p-8 neo-card">
+                    <h3 class="text-xl font-bold mb-2">Website Profil</h3>
+                    <p class="text-sm text-gray-500 mb-6 font-semibold uppercase tracking-wider">Mulai dari</p>
+                    <div class="text-4xl font-extrabold mb-6">Rp 1,5<span class="text-xl">jt</span></div>
+                    <p class="text-gray-600 mb-8">Cocok untuk company profile, landing page, portfolio, atau halaman promosi.</p>
+                    <button class="neo-btn bg-white w-full py-3">Tanya Detail</button>
+                </div>
+
+                <!-- Pricing 2 (Highlighted) -->
+                <div class="bg-dark text-white p-8 neo-card transform md:-translate-y-4">
+                    <div class="bg-brand-green text-white text-xs font-bold px-3 py-1 rounded-full border-2 border-dark absolute -top-4 left-1/2 -translate-x-1/2">Paling Sering Dipesan</div>
+                    <h3 class="text-xl font-bold mb-2 text-white">Sistem Sederhana</h3>
+                    <p class="text-sm text-gray-300 mb-6 font-semibold uppercase tracking-wider">Mulai dari</p>
+                    <div class="text-4xl font-extrabold mb-6">Rp 4<span class="text-xl">jt</span></div>
+                    <p class="text-gray-300 mb-8">Cocok untuk dashboard, invoice, stok, booking, atau sistem admin kecil untuk internal.</p>
+                    <button class="neo-btn bg-brand-green text-white border-dark w-full py-3">Tanya Detail</button>
+                </div>
+
+                <!-- Pricing 3 -->
+                <div class="bg-white p-8 neo-card">
+                    <h3 class="text-xl font-bold mb-2">Custom System</h3>
+                    <p class="text-sm text-gray-500 mb-6 font-semibold uppercase tracking-wider">Mulai dari</p>
+                    <div class="text-4xl font-extrabold mb-6">Rp 8<span class="text-xl">jt</span></div>
+                    <p class="text-gray-600 mb-8">Untuk kebutuhan yang lebih spesifik dan punya alur kerja/flow khusus untuk perusahaan.</p>
+                    <button class="neo-btn bg-white w-full py-3">Tanya Detail</button>
+                </div>
+
+            </div>
+
+            <!-- Batasan Alert -->
+            <div class="mt-16 max-w-3xl mx-auto bg-yellow-50 border-2 border-dark rounded-xl p-6 flex gap-4 items-start shadow-neo-sm">
+                <i data-lucide="info" class="w-6 h-6 text-yellow-600 shrink-0 mt-1"></i>
+                <p class="text-sm font-medium text-gray-800">
+                    <strong class="block mb-1">Batasan Pengerjaan:</strong>
+                    Saat ini kami fokus pada website dan sistem sederhana sampai menengah. Untuk sistem skala enterprise yang terlalu besar atau kompleks, kami akan bantu cek dulu apakah cocok dikerjakan oleh tim kami.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-20 px-4 md:px-8 bg-brand-blue text-white border-t-2 border-dark">
+        <div class="max-w-4xl mx-auto text-center neo-card bg-dark text-white p-10 md:p-16">
+            <h2 class="text-3xl md:text-5xl font-extrabold mb-6">Punya proses kerja yang masih manual?</h2>
+            <p class="text-lg text-gray-300 mb-10 max-w-2xl mx-auto">
+                Ceritakan dulu kebutuhannya. Tidak harus teknis. Nanti kita bantu lihat apakah bisa dibuat lebih rapi dengan sistem sederhana.
+            </p>
+            <a href="#" class="neo-btn bg-brand-green text-white px-8 py-4 text-lg border-dark shadow-[4px_4px_0px_0px_#fff] hover:shadow-[6px_6px_0px_0px_#fff]">
+                <i data-lucide="message-circle" class="w-5 h-5 mr-2"></i> Konsultasi via WhatsApp
+            </a>
+            <p class="mt-6 text-sm text-gray-400 font-medium">Bisa mulai dari ngobrol santai dulu.</p>
+        </div>
+    </section>
+
+    <footer class="bg-white border-t-2 border-dark py-12 px-4 md:px-8">
+        <div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
+            <div class="flex items-center gap-2">
+                <div class="bg-dark text-white w-8 h-8 rounded-lg flex items-center justify-center neo-border">
+                    <i data-lucide="blocks" class="w-5 h-5"></i>
+                </div>
+                <span class="text-xl font-extrabold tracking-tight">Krespace.</span>
+            </div>
+            
+            <div class="flex gap-6 text-sm font-bold text-gray-600">
+                <a href="#solusi" class="hover:text-dark">Solusi</a>
+                <a href="#demo" class="hover:text-dark">Demo</a>
+                <a href="#harga" class="hover:text-dark">Harga</a>
+            </div>
+
+            <div class="text-sm text-gray-500 font-medium">
+                &copy; 2026 Krespace Studio. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <!-- Initialize Icons -->
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>
