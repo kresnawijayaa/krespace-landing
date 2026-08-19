@@ -4,18 +4,37 @@ import { site } from "../data/site";
 ---
 
 <footer class="border-t-2 border-dark bg-white px-4 py-12 md:px-8">
-  <div class="mx-auto flex max-w-6xl flex-col items-center justify-between gap-6 md:flex-row">
-    <a href="/" class="flex items-center gap-2">
-      <div class="flex h-8 w-8 items-center justify-center rounded-lg bg-dark text-white neo-border">
-        <Icon name="Blocks" class="h-5 w-5" />
+  <div class="mx-auto max-w-6xl">
+    <div class="grid gap-10 md:grid-cols-[1.3fr_1fr_1fr]">
+      <div>
+        <a href="/" class="mb-4 inline-flex items-center gap-2">
+          <div class="flex h-9 w-9 items-center justify-center rounded-lg bg-dark text-white neo-border"><Icon name="Blocks" class="h-5 w-5" /></div>
+          <span class="text-xl font-extrabold">Krespace.</span>
+        </a>
+        <p class="max-w-sm text-sm font-medium leading-relaxed text-gray-600">Dari ide atau source code sampai benar-benar berjalan, digunakan, dan punya jalur perawatan.</p>
       </div>
-      <span class="text-xl font-extrabold tracking-tight">Krespace.</span>
-    </a>
-    <div class="flex gap-6 text-sm font-bold text-gray-600">
-      <a href="/#solusi" class="hover:text-dark">Solusi</a>
-      <a href="/demo" class="hover:text-dark">Demo</a>
-      <a href="/#harga" class="hover:text-dark">Harga</a>
+      <div>
+        <p class="mb-3 text-sm font-extrabold uppercase text-gray-500">Jelajahi</p>
+        <div class="grid gap-2 text-sm font-bold">
+          <a href="/services" class="hover:text-teal-700">Layanan</a>
+          <a href="/work" class="hover:text-teal-700">Hasil Kerja</a>
+          <a href="/#cara-kerja" class="hover:text-teal-700">Cara Kerja</a>
+          <a href="/#harga" class="hover:text-teal-700">Harga</a>
+        </div>
+      </div>
+      <div>
+        <p class="mb-3 text-sm font-extrabold uppercase text-gray-500">Krespace</p>
+        <div class="grid gap-2 text-sm font-bold">
+          <a href="/about" class="hover:text-teal-700">Tentang</a>
+          <a href="/contact" class="hover:text-teal-700">Hubungi Kami</a>
+          <a href="/privacy" class="hover:text-teal-700">Privasi</a>
+          <a href={`mailto:${site.email}`} class="hover:text-teal-700">{site.email}</a>
+        </div>
+      </div>
     </div>
-    <div class="text-sm font-medium text-gray-500">&copy; {site.copyrightYear} Krespace Studio. All rights reserved.</div>
+    <div class="mt-10 flex flex-col justify-between gap-3 border-t-2 border-dark pt-6 text-sm font-medium text-gray-500 md:flex-row">
+      <span>&copy; {site.copyrightYear} Krespace Studio. All rights reserved.</span>
+      <span>Build · Launch · Rescue · Upgrade · Care</span>
+    </div>
   </div>
 </footer>

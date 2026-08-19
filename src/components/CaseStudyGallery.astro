@@ -1,0 +1,158 @@
+---
+import Icon from "./Icon.astro";
+
+interface GalleryImage {
+  src: string;
+  alt: string;
+  caption: string;
+  width: number;
+  height: number;
+}
+
+interface Props {
+  images: GalleryImage[];
+  accessNote: string;
+  isDemo: boolean;
+}
+
+const { images, accessNote, isDemo } = Astro.props;
+const initialImage = images[0];
+---
+
+<section aria-labelledby="gallery-heading" data-case-gallery>
+  <div class="mb-6 flex flex-col justify-between gap-3 md:flex-row md:items-end">
+    <div>
+      <p class="mb-2 text-sm font-extrabold uppercase text-teal-700">Project preview</p>
+      <h2 id="gallery-heading" class="text-3xl font-extrabold">Tampilan project</h2>
+      <p class="mt-2 text-sm font-semibold text-gray-500">Klik gambar untuk melihat ukuran lebih besar.</p>
+    </div>
+    {isDemo && <span class="neo-badge bg-yellow-100">Data demonstrasi</span>}
+  </div>
+
+  <figure class="overflow-hidden rounded-2xl border-2 border-dark bg-white shadow-neo-lg">
+    <button
+      type="button"
+      class="group relative block w-full cursor-zoom-in bg-gray-100 text-left"
+      aria-label="Perbesar gambar project"
+      data-gallery-open
+    >
+      <img
+        src={initialImage.src}
+        alt={initialImage.alt}
+        width={initialImage.width}
+        height={initialImage.height}
+        class="mx-auto h-auto w-auto max-w-full object-contain"
+        data-gallery-main
+      />
+      <span class="absolute bottom-4 right-4 flex h-11 w-11 items-center justify-center rounded-lg border-2 border-dark bg-white shadow-neo-sm transition-transform group-hover:-translate-y-1" aria-hidden="true">
+        <Icon name="Maximize2" class="h-5 w-5" />
+      </span>
+    </button>
+    <figcaption class="border-t-2 border-dark bg-yellow-50 p-5">
+      <p class="text-sm font-extrabold text-dark" data-gallery-caption>{initialImage.caption}</p>
+      <p class="mt-2 text-sm font-medium text-gray-700">{accessNote}</p>
+    </figcaption>
+  </figure>
+
+  {images.length > 1 && (
+    <div class="mt-5 flex snap-x gap-4 overflow-x-auto pb-3" aria-label="Pilih gambar project">
+      {images.map((image, index) => (
+        <button
+          type="button"
+          class={`gallery-thumb w-44 shrink-0 snap-start overflow-hidden rounded-xl border-2 bg-white p-1 shadow-neo-sm transition-transform hover:-translate-y-1 ${index === 0 ? "border-teal-600" : "border-dark"}`}
+          aria-label={`Tampilkan gambar ${index + 1}: ${image.caption}`}
+          aria-current={index === 0 ? "true" : "false"}
+          data-gallery-thumb
+          data-index={index}
+        >
+          <img src={image.src} alt="" width={image.width} height={image.height} loading="lazy" class="aspect-[16/10] w-full rounded-lg object-cover" />
+        </button>
+      ))}
+    </div>
+  )}
+
+  <dialog class="gallery-dialog m-auto w-[min(94vw,1400px)] max-w-none bg-transparent p-0" data-gallery-dialog>
+    <div class="relative border-2 border-dark bg-dark p-3 shadow-[8px_8px_0_0_#14b8a6] md:p-5">
+      <button type="button" class="absolute right-3 top-3 z-10 flex h-11 w-11 items-center justify-center rounded-lg border-2 border-dark bg-white shadow-neo-sm" aria-label="Tutup gambar" data-gallery-close>
+        <Icon name="X" class="h-6 w-6" />
+      </button>
+      <img src={initialImage.src} alt={initialImage.alt} width={initialImage.width} height={initialImage.height} class="mx-auto h-auto max-h-[78vh] w-auto max-w-full object-contain" data-gallery-lightbox-image />
+      <div class="mt-3 flex items-center justify-between gap-4 text-white">
+        <button type="button" class="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg border-2 border-white disabled:opacity-30" aria-label="Gambar sebelumnya" data-gallery-prev>
+          <Icon name="ChevronLeft" class="h-6 w-6" />
+        </button>
+        <p class="text-center text-sm font-bold" data-gallery-lightbox-caption>{initialImage.caption}</p>
+        <button type="button" class="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg border-2 border-white disabled:opacity-30" aria-label="Gambar berikutnya" data-gallery-next>
+          <Icon name="ChevronRight" class="h-6 w-6" />
+        </button>
+      </div>
+    </div>
+  </dialog>
+</section>
+
+<script define:vars={{ images }}>
+  const gallery = document.querySelector("[data-case-gallery]");
+  if (gallery) {
+    const mainImage = gallery.querySelector("[data-gallery-main]");
+    const mainCaption = gallery.querySelector("[data-gallery-caption]");
+    const dialog = gallery.querySelector("[data-gallery-dialog]");
+    const lightboxImage = gallery.querySelector("[data-gallery-lightbox-image]");
+    const lightboxCaption = gallery.querySelector("[data-gallery-lightbox-caption]");
+    const thumbs = [...gallery.querySelectorAll("[data-gallery-thumb]")];
+    const prevButton = gallery.querySelector("[data-gallery-prev]");
+    const nextButton = gallery.querySelector("[data-gallery-next]");
+    let activeIndex = 0;
+
+    const renderImage = (index) => {
+      activeIndex = index;
+      const image = images[index];
+      if (!image) return;
+
+      if (mainImage) {
+        mainImage.src = image.src;
+        mainImage.alt = image.alt;
+        mainImage.width = image.width;
+        mainImage.height = image.height;
+      }
+      if (mainCaption) mainCaption.textContent = image.caption;
+      if (lightboxImage) {
+        lightboxImage.src = image.src;
+        lightboxImage.alt = image.alt;
+        lightboxImage.width = image.width;
+        lightboxImage.height = image.height;
+      }
+      if (lightboxCaption) lightboxCaption.textContent = image.caption;
+
+      thumbs.forEach((thumb, thumbIndex) => {
+        const isActive = thumbIndex === index;
+        thumb.setAttribute("aria-current", String(isActive));
+        thumb.classList.toggle("border-teal-600", isActive);
+        thumb.classList.toggle("border-dark", !isActive);
+      });
+
+      if (prevButton) prevButton.disabled = images.length <= 1;
+      if (nextButton) nextButton.disabled = images.length <= 1;
+    };
+
+    thumbs.forEach((thumb) => {
+      thumb.addEventListener("click", () => renderImage(Number(thumb.dataset.index)));
+    });
+
+    gallery.querySelector("[data-gallery-open]")?.addEventListener("click", () => {
+      renderImage(activeIndex);
+      dialog?.showModal();
+      document.body.style.overflow = "hidden";
+    });
+
+    gallery.querySelector("[data-gallery-close]")?.addEventListener("click", () => dialog?.close());
+    prevButton?.addEventListener("click", () => renderImage((activeIndex - 1 + images.length) % images.length));
+    nextButton?.addEventListener("click", () => renderImage((activeIndex + 1) % images.length));
+
+    dialog?.addEventListener("click", (event) => {
+      if (event.target === dialog) dialog.close();
+    });
+    dialog?.addEventListener("close", () => {
+      document.body.style.overflow = "";
+    });
+  }
+</script>

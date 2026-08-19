@@ -1,0 +1,42 @@
+---
+import type { CollectionEntry } from "astro:content";
+import AccessBadge from "./AccessBadge.astro";
+import Icon from "./Icon.astro";
+
+interface Props {
+  work: CollectionEntry<"work">;
+  featured?: boolean;
+}
+
+const { work, featured = false } = Astro.props;
+const { data } = work;
+---
+
+<article class={`group overflow-hidden rounded-2xl border-2 border-dark bg-white text-dark shadow-neo ${featured ? "lg:first:col-span-2" : ""}`}>
+  <a href={`/work/${work.id}`} class="block overflow-hidden border-b-2 border-dark bg-gray-100">
+    <img
+      src={data.cover}
+      alt={data.coverAlt}
+      width={data.coverWidth}
+      height={data.coverHeight}
+      loading="lazy"
+      class="mx-auto h-auto w-auto max-w-full object-contain transition-transform duration-300 group-hover:scale-[1.02]"
+    />
+  </a>
+  <div class="p-6">
+    <div class="mb-4 flex flex-wrap items-center gap-2">
+      <AccessBadge access={data.access} />
+      <span class="neo-badge bg-teal-50 text-dark">{data.category}</span>
+      {data.demoData && <span class="neo-badge bg-white text-dark">Data demonstrasi</span>}
+    </div>
+    <p class="mb-2 text-sm font-bold uppercase text-gray-500">{data.clientDisplayName}</p>
+    <h3 class="mb-3 text-2xl font-extrabold">{data.title}</h3>
+    <p class="mb-6 leading-relaxed text-gray-600">{data.summary}</p>
+    <div class="mb-6 flex flex-wrap gap-2">
+      {data.services.map((service) => <span class="rounded-md bg-gray-100 px-2.5 py-1 text-xs font-bold text-dark">{service}</span>)}
+    </div>
+    <a href={`/work/${work.id}`} class="inline-flex items-center gap-2 font-extrabold text-dark hover:text-teal-700">
+      Baca studi kasus <Icon name="ArrowRight" class="h-4 w-4" />
+    </a>
+  </div>
+</article>

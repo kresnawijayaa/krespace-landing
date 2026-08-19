@@ -5,20 +5,24 @@ export const site = {
   whatsappNumber: "6281314250902",
   whatsappText: "Halo Krespace, saya mau konsultasi project",
   email: "contact@kresnawijaya.web.id",
-  defaultSeoTitle: "Krespace Studio | Website & Sistem Sederhana",
+  defaultSeoTitle: "Krespace Studio | Build, Launch, Rescue, Upgrade & Care",
   defaultSeoDescription:
-    "Krespace Studio bantu bikin website, dashboard, invoice, stok, booking, dan sistem internal kecil yang mudah dipakai sehari-hari.",
+    "Krespace membantu membuat website dan sistem baru, menjalankan project yang belum online, memperbaiki kendala teknis, menambahkan fitur, dan merawatnya.",
   ogImage: "/og-image.svg",
   copyrightYear: 2026,
 };
 
 export const whatsappUrl = `https://wa.me/${site.whatsappNumber}?text=${encodeURIComponent(site.whatsappText)}`;
 
+export const whatsappUrlFor = (message: string) =>
+  `https://wa.me/${site.whatsappNumber}?text=${encodeURIComponent(message)}`;
+
 export const navLinks = [
-  { label: "Solusi", href: "/#solusi" },
-  { label: "Demo", href: "/demo" },
+  { label: "Layanan", href: "/services" },
+  { label: "Hasil Kerja", href: "/work" },
   { label: "Cara Kerja", href: "/#cara-kerja" },
-  { label: "Estimasi Harga", href: "/#harga" },
+  { label: "Harga", href: "/#harga" },
+  { label: "Tentang", href: "/about" },
 ];
 
 export const organizationSchema = {
@@ -29,10 +33,11 @@ export const organizationSchema = {
   description: site.defaultSeoDescription,
   areaServed: "Indonesia",
   serviceType: [
-    "Jasa pembuatan website",
-    "Jasa pembuatan sistem internal",
-    "Dashboard sederhana",
-    "Website undangan digital",
+    "Build website dan sistem",
+    "Launch dan deployment",
+    "Rescue project bermasalah",
+    "Upgrade fitur dan integrasi",
+    "Care dan maintenance",
   ],
   contactPoint: {
     "@type": "ContactPoint",

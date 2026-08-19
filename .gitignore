@@ -8,3 +8,5 @@ dev-server.*.log
 *.log
 .DS_Store
 Thumbs.db
+private/
+docs/implementation_plan.md

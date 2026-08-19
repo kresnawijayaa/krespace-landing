@@ -1,68 +1,68 @@
 ---
 import Icon from "./Icon.astro";
-import { whatsappUrl } from "../data/site";
+import { whatsappUrlFor } from "../data/site";
+
+const buildMessage = `Halo Krespace, saya ingin menceritakan kebutuhan project.
+
+Jenis kebutuhan:
+Kondisi project saat ini:
+Target penggunaan:
+Perkiraan budget:`;
 ---
 
-<section class="relative overflow-hidden px-4 pb-20 pt-32 md:px-8">
-  <div class="absolute right-10 top-20 -z-10 h-64 w-64 rounded-full bg-brand-blue/10 blur-3xl"></div>
-  <div class="absolute bottom-10 left-10 -z-10 h-72 w-72 rounded-full bg-brand-purple/10 blur-3xl"></div>
-
-  <div class="mx-auto grid max-w-6xl items-center gap-12 md:grid-cols-2">
-    <div class="z-10 space-y-8">
-      <div class="space-y-4">
-        <h1 class="text-5xl font-extrabold leading-tight tracking-tight md:text-6xl">
-          Website & sistem sederhana untuk kerja yang lebih <span class="relative inline-block text-brand-blue">rapi.<svg class="absolute -bottom-1 left-0 h-3 w-full text-brand-blue" viewBox="0 0 100 10" preserveAspectRatio="none" aria-hidden="true"><path d="M0 5 Q 50 10 100 5" stroke="currentColor" stroke-width="4" fill="none"></path></svg></span>
-        </h1>
-        <p class="max-w-lg text-lg font-medium leading-relaxed text-gray-700 md:text-xl">
-          Kami bantu bikin website, dashboard, invoice, stok, booking, dan sistem internal kecil yang mudah dipakai sehari-hari.
-        </p>
+<section class="relative overflow-hidden border-b-2 border-dark px-4 pb-20 pt-32 md:px-8 md:pb-24">
+  <div class="mx-auto grid max-w-6xl items-center gap-12 lg:grid-cols-[1.08fr_0.92fr]">
+    <div class="z-10">
+      <div class="mb-6 flex flex-wrap gap-2">
+        <span class="neo-badge bg-teal-100">Build</span>
+        <span class="neo-badge bg-yellow-100">Launch</span>
+        <span class="neo-badge bg-orange-100">Rescue</span>
+        <span class="neo-badge bg-purple-100">Upgrade</span>
+        <span class="neo-badge bg-lime-100">Care</span>
       </div>
-
-      <div class="flex flex-col gap-4 sm:flex-row">
-        <a href={whatsappUrl} target="_blank" rel="noopener noreferrer" class="neo-btn bg-brand-green px-8 py-3 text-lg text-white">Konsultasi via WhatsApp</a>
-        <a href="/demo" class="neo-btn bg-white px-8 py-3 text-lg hover:bg-gray-50">Lihat Demo</a>
+      <h1 class="max-w-4xl text-4xl font-extrabold leading-[1.08] md:text-6xl lg:text-7xl">
+        Dari ide atau source code sampai benar-benar <span class="relative inline-block text-teal-600">berjalan.<svg class="absolute -bottom-1 left-0 h-3 w-full text-yellow-400" viewBox="0 0 100 10" preserveAspectRatio="none" aria-hidden="true"><path d="M0 5 Q 50 10 100 5" stroke="currentColor" stroke-width="4" fill="none"></path></svg></span>
+      </h1>
+      <p class="mt-6 max-w-2xl text-lg font-medium leading-relaxed text-gray-700 md:text-xl">
+        Krespace membantu membuat website dan sistem baru, menjalankan project yang belum online, memperbaiki kendala teknis, menambahkan fitur, dan merawatnya setelah digunakan.
+      </p>
+      <div class="mt-8 flex flex-col gap-4 sm:flex-row">
+        <a href={whatsappUrlFor(buildMessage)} target="_blank" rel="noopener noreferrer" class="neo-btn bg-teal-500 px-7 py-3.5 text-white">
+          Ceritakan Kebutuhanmu
+        </a>
+        <a href="/work" class="neo-btn gap-2 bg-white px-7 py-3.5">
+          Lihat Hasil Kerja <Icon name="ArrowRight" class="h-5 w-5" />
+        </a>
       </div>
-
-      <div class="pt-4">
-        <div class="flex flex-wrap gap-2">
-          <span class="neo-badge">Website</span>
-          <span class="neo-badge bg-blue-50">Dashboard</span>
-          <span class="neo-badge bg-green-50">Invoice</span>
-          <span class="neo-badge bg-yellow-50">Stock</span>
-          <span class="neo-badge bg-purple-50">Booking</span>
-          <span class="neo-badge">Monitoring</span>
-        </div>
-      </div>
+      <p class="mt-5 text-sm font-semibold text-gray-500">Tidak harus teknis. Mulai dari kondisi project yang ada sekarang.</p>
     </div>
 
-    <div class="relative z-10 hidden w-full md:block" aria-label="Mockup dashboard sistem internal Krespace">
-      <div class="absolute -right-4 -top-4 z-0 h-full w-full rounded-2xl bg-brand-yellow neo-border"></div>
-      <div class="mockup-window relative z-10 flex h-[400px] flex-col shadow-neo-lg">
-        <div class="mockup-header">
-          <div class="mockup-dot bg-red-400"></div>
-          <div class="mockup-dot bg-yellow-400"></div>
-          <div class="mockup-dot bg-green-400"></div>
+    <div class="relative" aria-label="Alur project dari source code sampai online dan dirawat">
+      <div class="absolute -bottom-4 -right-4 h-full w-full rounded-2xl border-2 border-dark bg-yellow-300"></div>
+      <div class="relative overflow-hidden rounded-2xl border-2 border-dark bg-white shadow-neo-lg">
+        <div class="mockup-header items-center">
+          <div class="mockup-dot bg-orange-400"></div>
+          <div class="mockup-dot bg-yellow-300"></div>
+          <div class="mockup-dot bg-lime-400"></div>
+          <span class="ml-auto text-xs font-extrabold uppercase text-gray-500">Project journey</span>
         </div>
-        <div class="flex flex-1 bg-gray-50">
-          <div class="flex w-16 flex-col items-center gap-6 border-r-2 border-dark bg-white py-4">
-            <div class="h-8 w-8 rounded bg-dark"></div>
-            <div class="h-6 w-6 rounded bg-gray-200"></div>
-            <div class="h-6 w-6 rounded bg-brand-blue"></div>
-            <div class="h-6 w-6 rounded bg-gray-200"></div>
+        <div class="space-y-3 p-5 md:p-7">
+          <div class="grid grid-cols-[auto_1fr_auto] items-center gap-4 rounded-xl border-2 border-dark bg-gray-50 p-4">
+            <div class="flex h-10 w-10 items-center justify-center rounded-lg bg-purple-500 text-white neo-border"><Icon name="Code2" class="h-5 w-5" /></div>
+            <div><p class="text-xs font-bold uppercase text-gray-500">Input</p><p class="font-extrabold">Ide atau source code</p></div>
+            <span class="neo-badge hidden bg-purple-100 sm:inline-flex">CHECK</span>
           </div>
-          <div class="flex-1 space-y-4 p-6">
-            <div class="mb-6 flex items-center justify-between">
-              <div class="h-6 w-32 rounded bg-gray-200"></div>
-              <div class="h-8 w-24 rounded bg-dark neo-border"></div>
-            </div>
-            <div class="grid grid-cols-3 gap-4">
-              <div class="flex h-24 flex-col justify-between rounded-xl bg-white p-4 neo-border"><div class="h-2 w-10 rounded bg-gray-200"></div><div class="h-6 w-16 rounded bg-dark"></div></div>
-              <div class="flex h-24 flex-col justify-between rounded-xl border-2 border-dark bg-brand-blue p-4 text-white shadow-neo-sm"><div class="h-2 w-10 rounded bg-blue-200"></div><div class="h-6 w-16 rounded bg-white"></div></div>
-              <div class="flex h-24 flex-col justify-between rounded-xl bg-white p-4 neo-border"><div class="h-2 w-10 rounded bg-gray-200"></div><div class="h-6 w-16 rounded bg-dark"></div></div>
-            </div>
-            <div class="mt-4 h-32 rounded-xl bg-white p-4 neo-border">
-              <div class="flex h-full w-full items-center justify-center rounded border-2 border-dashed border-gray-300 text-sm font-bold text-gray-400">Data Table Area</div>
-            </div>
+          <div class="ml-5 h-5 border-l-2 border-dashed border-dark"></div>
+          <div class="grid grid-cols-[auto_1fr_auto] items-center gap-4 rounded-xl border-2 border-dark bg-orange-50 p-4">
+            <div class="flex h-10 w-10 items-center justify-center rounded-lg bg-orange-500 text-white neo-border"><Icon name="Wrench" class="h-5 w-5" /></div>
+            <div><p class="text-xs font-bold uppercase text-gray-500">Process</p><p class="font-extrabold">Build, Rescue, atau Upgrade</p></div>
+            <span class="neo-badge hidden bg-orange-100 sm:inline-flex">WORK</span>
+          </div>
+          <div class="ml-5 h-5 border-l-2 border-dashed border-dark"></div>
+          <div class="grid grid-cols-[auto_1fr_auto] items-center gap-4 rounded-xl border-2 border-dark bg-teal-50 p-4">
+            <div class="flex h-10 w-10 items-center justify-center rounded-lg bg-teal-500 text-white neo-border"><Icon name="Rocket" class="h-5 w-5" /></div>
+            <div><p class="text-xs font-bold uppercase text-gray-500">Output</p><p class="font-extrabold">Online, digunakan, dan dirawat</p></div>
+            <span class="neo-badge hidden bg-lime-100 sm:inline-flex">LIVE</span>
           </div>
         </div>
       </div>

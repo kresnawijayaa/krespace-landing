@@ -1,0 +1,55 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Navbar from "../components/Navbar.astro";
+import Footer from "../components/Footer.astro";
+import Icon from "../components/Icon.astro";
+import { whatsappUrlFor } from "../data/site";
+
+const message = `Halo Krespace, saya ingin menanyakan layanan maintenance.
+
+Link website:
+Jenis website/sistem:
+Hosting saat ini:
+Masalah yang sering terjadi:
+Bantuan yang dibutuhkan:`;
+---
+
+<BaseLayout title="Care & Maintenance | Krespace Studio" description="Layanan maintenance, monitoring, backup check, deployment perubahan, dan dukungan teknis untuk website atau sistem." canonicalPath="/care">
+  <Navbar />
+  <main>
+    <section class="border-b-2 border-dark bg-lime-100 px-4 pb-16 pt-32 md:px-8">
+      <div class="mx-auto max-w-6xl">
+        <span class="neo-badge bg-lime-500">CARE</span>
+        <h1 class="mt-6 max-w-4xl text-4xl font-extrabold leading-tight md:text-6xl">Setelah online, project tetap perlu seseorang yang memperhatikan</h1>
+        <p class="mt-6 max-w-3xl text-lg font-medium leading-relaxed text-gray-700">Care membantu menjaga hal-hal dasar tetap terpantau: uptime, backup, domain, SSL, deployment perubahan, maintenance, dan minor fixes sesuai batas dukungan.</p>
+        <a href={whatsappUrlFor(message)} target="_blank" rel="noopener noreferrer" class="neo-btn mt-8 gap-2 bg-lime-500 px-7 py-3.5"><Icon name="MessageCircle" class="h-5 w-5" /> Tanya layanan Care</a>
+      </div>
+    </section>
+    <section class="px-4 py-20 md:px-8">
+      <div class="mx-auto max-w-6xl">
+        <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+          {[
+            ["ShieldCheck", "Baseline assessment", "Cek hosting, deployment, domain, SSL, backup, dan akses sebelum masa Care dimulai."],
+            ["Activity", "Monitoring dasar", "Pengecekan uptime dan komponen penting sesuai jenis project."],
+            ["Database", "Backup check", "Memastikan mekanisme backup tersedia dan dapat diperiksa secara berkala."],
+            ["Rocket", "Deployment perubahan", "Membantu membawa perubahan yang sudah disepakati ke production."],
+            ["Wrench", "Maintenance", "Update rutin dan minor fixes yang masih masuk batas paket."],
+            ["MessageCircle", "Jalur dukungan", "Kontak teknis yang jelas saat ada kendala atau perubahan kecil."],
+          ].map(([icon, title, copy]) => <article class="neo-card p-6"><Icon name={icon} class="h-7 w-7 text-lime-700" /><h2 class="mt-5 text-xl font-extrabold">{title}</h2><p class="mt-2 text-sm leading-relaxed text-gray-600">{copy}</p></article>)}
+        </div>
+        <div class="mt-14 grid gap-6 md:grid-cols-2">
+          <div class="border-2 border-dark bg-dark p-7 text-white shadow-neo">
+            <p class="text-sm font-extrabold uppercase text-lime-300">Mulai dari</p>
+            <p class="mt-3 text-4xl font-extrabold">Rp250.000<span class="text-lg">/bulan</span></p>
+            <p class="mt-4 text-gray-300">Harga mengikuti kompleksitas sistem, akses, frekuensi perubahan, dan kebutuhan respons.</p>
+          </div>
+          <div class="border-2 border-dark bg-yellow-50 p-7 shadow-neo-sm">
+            <h2 class="text-2xl font-extrabold">Batas dukungan</h2>
+            <p class="mt-3 font-medium text-gray-700">Care bukan pengembangan fitur tanpa batas atau jaminan semua gangguan eksternal dapat dicegah. Fitur baru, migrasi besar, insiden vendor, dan pekerjaan di luar baseline dibuat sebagai scope terpisah.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+  <Footer />
+</BaseLayout>

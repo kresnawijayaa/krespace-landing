@@ -1,35 +1,35 @@
 ---
-import Icon from "./Icon.astro";
 import { pricing } from "../data/pricing";
-import { whatsappUrl } from "../data/site";
+import { whatsappUrlFor } from "../data/site";
 ---
 
 <section id="harga" class="px-4 py-20 md:px-8">
   <div class="mx-auto max-w-6xl">
-    <div class="mb-12 text-center">
-      <h2 class="mb-4 text-3xl font-extrabold md:text-4xl">Estimasi Awal</h2>
-      <p class="text-gray-600">Harga final menyesuaikan fitur, scope, deadline, dan kebutuhan hosting.</p>
+    <div class="mb-12 grid gap-5 md:grid-cols-2 md:items-end">
+      <div>
+        <p class="mb-3 text-sm font-extrabold uppercase text-purple-700">Estimasi awal</p>
+        <h2 class="text-3xl font-extrabold md:text-5xl">Bisa mulai dari bantuan kecil</h2>
+      </div>
+      <p class="text-lg font-medium text-gray-700">Estimasi final mengikuti kondisi project, teknologi, akses, urgensi, dan risiko pengerjaan.</p>
     </div>
+    <div class="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+      {pricing.map((item) => {
+        const message = `Halo Krespace, saya ingin menanyakan ${item.title}.
 
-    <div class="grid items-start gap-8 md:grid-cols-3">
-      {pricing.map((item) => (
-        <article class={`neo-card relative p-8 ${item.featured ? "bg-dark text-white md:-translate-y-4" : "bg-white"}`}>
-          {item.featured && <div class="absolute -top-4 left-1/2 -translate-x-1/2 rounded-full border-2 border-dark bg-brand-green px-3 py-1 text-xs font-bold text-white">Paling Sering Dipesan</div>}
-          <h3 class={`mb-2 text-xl font-bold ${item.featured ? "text-white" : ""}`}>{item.title}</h3>
-          <p class={`mb-6 text-sm font-semibold uppercase tracking-wider ${item.featured ? "text-gray-300" : "text-gray-500"}`}>{item.prefix}</p>
-          <div class="mb-6 text-4xl font-extrabold">{item.price}<span class="text-xl">{item.suffix}</span></div>
-          <p class={`mb-8 ${item.featured ? "text-gray-300" : "text-gray-600"}`}>{item.description}</p>
-          <a href={whatsappUrl} target="_blank" rel="noopener noreferrer" class={`neo-btn w-full py-3 ${item.featured ? "border-dark bg-brand-green text-white" : "bg-white"}`}>Tanya Detail</a>
-        </article>
-      ))}
-    </div>
-
-    <div class="mx-auto mt-16 flex max-w-3xl items-start gap-4 rounded-xl border-2 border-dark bg-yellow-50 p-6 shadow-neo-sm">
-      <Icon name="Info" class="mt-1 h-6 w-6 shrink-0 text-yellow-600" />
-      <p class="text-sm font-medium text-gray-800">
-        <strong class="mb-1 block">Batasan Pengerjaan:</strong>
-        Saat ini kami fokus pada website dan sistem sederhana sampai menengah. Untuk sistem skala enterprise yang terlalu besar atau kompleks, kami akan bantu cek dulu apakah cocok dikerjakan oleh tim kami.
-      </p>
+Kondisi/kebutuhan:
+Teknologi jika tahu:
+Urgensi:`;
+        return (
+          <article class="neo-card flex flex-col p-6">
+            <div class={`mb-6 h-3 w-20 rounded-full border-2 border-dark ${item.accentClass}`}></div>
+            <h3 class="text-xl font-extrabold">{item.title}</h3>
+            <p class="mt-2 text-sm font-bold uppercase text-gray-500">Mulai dari</p>
+            <p class="my-5 text-3xl font-extrabold">{item.price}</p>
+            <p class="mb-7 flex-1 text-sm leading-relaxed text-gray-600">{item.description}</p>
+            <a href={whatsappUrlFor(message)} target="_blank" rel="noopener noreferrer" class="neo-btn bg-white px-5 py-3">Tanya scope</a>
+          </article>
+        );
+      })}
     </div>
   </div>
 </section>

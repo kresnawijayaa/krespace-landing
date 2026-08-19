@@ -1,38 +1,43 @@
 ---
 import Icon from "./Icon.astro";
+
+const before = [
+  "Source code hanya berjalan lokal",
+  "Proses masih manual",
+  "Project tidak terdokumentasi",
+  "Error tidak diketahui penyebabnya",
+  "Tidak ada backup",
+  "Tidak ada yang menangani setelah launch",
+];
+const after = [
+  "Project online dan dapat diakses",
+  "Sistem lebih terstruktur",
+  "Domain dan HTTPS aktif",
+  "Perubahan terdokumentasi",
+  "Alur kerja lebih jelas",
+  "Ada jalur dukungan teknis",
+];
 ---
 
-<section class="border-b-2 border-dark bg-gray-50 px-4 py-20 md:px-8">
-  <div class="mx-auto max-w-5xl">
-    <h2 class="mb-16 text-center text-3xl font-extrabold md:text-4xl">Dari Manual ke Lebih Rapi</h2>
-    <div class="relative flex flex-col items-stretch gap-8 md:flex-row">
-      <div class="absolute left-1/2 top-1/2 z-10 hidden h-12 w-12 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border-2 border-dark bg-white text-dark shadow-neo-sm md:flex">
-        <Icon name="ArrowRight" class="h-6 w-6" />
-      </div>
-      <div class="relative flex-1 rounded-2xl border-2 border-dark bg-white p-8 shadow-[6px_6px_0px_0px_#ef4444] transition-transform hover:-translate-y-1">
-        <div class="absolute -top-5 left-8 flex items-center gap-2 rounded-full border-2 border-dark bg-red-100 px-4 py-1 font-bold text-red-700 shadow-neo-sm"><Icon name="XCircle" class="h-4 w-4" /> Sebelum</div>
-        <ul class="mt-4 space-y-5">
-          <li class="flex items-center gap-3 font-medium text-gray-700"><Icon name="FileSpreadsheet" class="h-6 w-6 shrink-0 text-red-500" /> Data tersebar di Excel</li>
-          <li class="flex items-center gap-3 font-medium text-gray-700"><Icon name="MessageSquare" class="h-6 w-6 shrink-0 text-red-500" /> Status pekerjaan tanya lewat chat</li>
-          <li class="flex items-center gap-3 font-medium text-gray-700"><Icon name="ClipboardList" class="h-6 w-6 shrink-0 text-red-500" /> Rekap laporan manual</li>
-          <li class="flex items-center gap-3 font-medium text-gray-700"><Icon name="SearchX" class="h-6 w-6 shrink-0 text-red-500" /> Dokumen sulit dicari</li>
-        </ul>
-      </div>
-      <div class="relative flex-1 rounded-2xl border-2 border-dark bg-brand-blue p-8 text-white shadow-[6px_6px_0px_0px_#111827] transition-transform hover:-translate-y-1">
-        <div class="absolute -top-5 left-8 flex items-center gap-2 rounded-full border-2 border-white bg-blue-400/20 px-4 py-1 font-bold text-white shadow-[4px_4px_0px_0px_rgba(255,255,255,0.3)] backdrop-blur-sm"><Icon name="CheckCircle2" class="h-4 w-4" /> Sesudah</div>
-        <ul class="mt-4 space-y-5">
-          <li class="flex items-center gap-3 font-medium text-blue-50"><Icon name="Database" class="h-6 w-6 shrink-0 text-brand-yellow" /> Data tersimpan di sistem</li>
-          <li class="flex items-center gap-3 font-medium text-blue-50"><Icon name="LayoutDashboard" class="h-6 w-6 shrink-0 text-brand-yellow" /> Status terlihat di dashboard</li>
-          <li class="flex items-center gap-3 font-medium text-blue-50"><Icon name="Filter" class="h-6 w-6 shrink-0 text-brand-yellow" /> Laporan bisa difilter/export</li>
-          <li class="flex items-center gap-3 font-medium text-blue-50"><Icon name="FolderCheck" class="h-6 w-6 shrink-0 text-brand-yellow" /> Dokumen tersimpan per data</li>
-        </ul>
-      </div>
+<section class="border-b-2 border-dark bg-white px-4 py-20 md:px-8">
+  <div class="mx-auto max-w-6xl">
+    <div class="mb-14 max-w-3xl">
+      <p class="mb-3 text-sm font-extrabold uppercase text-orange-700">Perubahan yang dicari</p>
+      <h2 class="text-3xl font-extrabold md:text-5xl">Dari “sudah ada kodenya” ke benar-benar berjalan</h2>
     </div>
-    <div class="mx-auto mt-12 max-w-2xl text-center">
-      <p class="rounded-xl border-2 border-dark bg-yellow-50 p-4 text-lg font-medium text-gray-700 shadow-neo-sm">
-        <Icon name="Lightbulb" class="mr-1 inline-block h-5 w-5 -mt-1 text-brand-yellow" />
-        Banyak sistem tidak harus besar. Kadang yang dibutuhkan hanya tempat kerja yang lebih rapi, jelas, dan mudah dicek.
-      </p>
+    <div class="relative grid gap-8 md:grid-cols-2">
+      <div class="relative rounded-2xl border-2 border-dark bg-orange-50 p-7 shadow-[6px_6px_0_0_#f97316]">
+        <div class="mb-7 flex items-center gap-3"><Icon name="XCircle" class="h-7 w-7 text-orange-600" /><h3 class="text-2xl font-extrabold">Sebelum</h3></div>
+        <ul class="grid gap-4">
+          {before.map((item) => <li class="flex items-start gap-3 font-semibold text-gray-700"><span class="mt-2 h-2 w-2 shrink-0 rounded-full bg-orange-500"></span>{item}</li>)}
+        </ul>
+      </div>
+      <div class="relative rounded-2xl border-2 border-dark bg-teal-500 p-7 text-white shadow-neo-lg">
+        <div class="mb-7 flex items-center gap-3"><Icon name="CheckCircle2" class="h-7 w-7 text-yellow-200" /><h3 class="text-2xl font-extrabold">Sesudah</h3></div>
+        <ul class="grid gap-4">
+          {after.map((item) => <li class="flex items-start gap-3 font-semibold text-teal-50"><span class="mt-2 h-2 w-2 shrink-0 rounded-full bg-yellow-300"></span>{item}</li>)}
+        </ul>
+      </div>
     </div>
   </div>
 </section>

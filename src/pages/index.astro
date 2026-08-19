@@ -1,17 +1,21 @@
 ---
+import { getCollection } from "astro:content";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import Navbar from "../components/Navbar.astro";
 import Hero from "../components/Hero.astro";
 import NeedCards from "../components/NeedCards.astro";
-import BeforeAfter from "../components/BeforeAfter.astro";
 import Services from "../components/Services.astro";
-import CustomIdeas from "../components/CustomIdeas.astro";
-import DemoProjects from "../components/DemoProjects.astro";
-import About from "../components/About.astro";
+import FeaturedWork from "../components/FeaturedWork.astro";
+import TestimonialSection from "../components/TestimonialSection.astro";
+import BeforeAfter from "../components/BeforeAfter.astro";
 import ProcessSteps from "../components/ProcessSteps.astro";
 import Pricing from "../components/Pricing.astro";
 import FinalCTA from "../components/FinalCTA.astro";
 import Footer from "../components/Footer.astro";
+
+const featuredWork = (await getCollection("work", ({ data }) => data.featured))
+  .sort((a, b) => a.data.priority - b.data.priority)
+  .slice(0, 3);
 ---
 
 <BaseLayout>
@@ -19,11 +23,10 @@ import Footer from "../components/Footer.astro";
   <main>
     <Hero />
     <NeedCards />
-    <BeforeAfter />
     <Services />
-    <CustomIdeas />
-    <DemoProjects />
-    <About />
+    <FeaturedWork works={featuredWork} />
+    <TestimonialSection />
+    <BeforeAfter />
     <ProcessSteps />
     <Pricing />
     <FinalCTA />

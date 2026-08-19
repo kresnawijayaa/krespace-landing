@@ -1,0 +1,55 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Navbar from "../components/Navbar.astro";
+import Footer from "../components/Footer.astro";
+import FinalCTA from "../components/FinalCTA.astro";
+import Icon from "../components/Icon.astro";
+import { whatsappUrlFor } from "../data/site";
+
+const message = `Halo Krespace, saya punya website/project yang sedang bermasalah.
+
+Link project:
+Kendala:
+Teknologi jika tahu:
+Apakah source code tersedia:
+Urgensi:`;
+const issues = ["Gagal build atau deploy", "Website blank", "API tidak tersambung", "Database error", "Project tidak selesai", "Project hasil AI belum siap production"];
+---
+
+<BaseLayout title="Rescue Project Bermasalah | Krespace Studio" description="Pemeriksaan dan perbaikan untuk website atau sistem yang gagal build, gagal deploy, blank, error, atau belum siap production." canonicalPath="/rescue">
+  <Navbar />
+  <main>
+    <section class="border-b-2 border-dark bg-orange-100 px-4 pb-16 pt-32 md:px-8">
+      <div class="mx-auto grid max-w-6xl gap-10 md:grid-cols-[1.1fr_0.9fr] md:items-center">
+        <div>
+          <span class="neo-badge bg-orange-500 text-white">RESCUE</span>
+          <h1 class="mt-6 text-4xl font-extrabold leading-tight md:text-6xl">Project bermasalah tidak harus dibangun ulang dari nol</h1>
+          <p class="mt-5 max-w-2xl text-lg font-medium leading-relaxed text-gray-700">Kami mulai dari pemeriksaan kondisi, akses, error, dan risiko. Setelah itu baru ditentukan apakah project bisa diperbaiki, perlu penyesuaian, atau lebih aman disusun ulang sebagian.</p>
+          <a href={whatsappUrlFor(message)} target="_blank" rel="noopener noreferrer" class="neo-btn mt-8 gap-2 bg-orange-500 px-7 py-3.5 text-white"><Icon name="MessageCircle" class="h-5 w-5" /> Minta pemeriksaan awal</a>
+        </div>
+        <div class="grid gap-3">
+          {issues.map((issue) => <div class="flex items-center gap-3 rounded-xl border-2 border-dark bg-white p-4 shadow-neo-sm"><Icon name="LifeBuoy" class="h-5 w-5 shrink-0 text-orange-600" /><span class="font-bold">{issue}</span></div>)}
+        </div>
+      </div>
+    </section>
+    <section class="px-4 py-20 md:px-8">
+      <div class="mx-auto max-w-6xl">
+        <h2 class="mb-10 text-3xl font-extrabold md:text-5xl">Alur Rescue Assessment</h2>
+        <div class="grid gap-5 md:grid-cols-4">
+          {[
+            ["1", "Kumpulkan konteks", "Link, source code, error, dan akses yang tersedia."],
+            ["2", "Reproduksi masalah", "Mencoba menjalankan atau menelusuri kendala."],
+            ["3", "Peta risiko", "Menentukan penyebab, batas akses, dan dependensi."],
+            ["4", "Rekomendasi", "Scope perbaikan, estimasi, atau opsi alternatif."],
+          ].map(([n, title, copy]) => <article class="border-2 border-dark bg-white p-5 shadow-neo"><span class="text-2xl font-extrabold text-orange-600">{n}</span><h3 class="mt-4 text-lg font-extrabold">{title}</h3><p class="mt-2 text-sm text-gray-600">{copy}</p></article>)}
+        </div>
+        <div class="mt-12 border-2 border-dark bg-yellow-50 p-6 shadow-neo-sm">
+          <h2 class="text-2xl font-extrabold">Mulai Rp150.000</h2>
+          <p class="mt-2 font-medium text-gray-700">Assessment mencakup pemeriksaan awal dan rangkuman jalur perbaikan. Perbaikan, akses berbayar, migrasi, atau perubahan scope dihitung terpisah setelah kondisi project diketahui.</p>
+        </div>
+      </div>
+    </section>
+    <FinalCTA />
+  </main>
+  <Footer />
+</BaseLayout>

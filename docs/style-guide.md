@@ -16,7 +16,8 @@ Dokumen ini dipakai sebagai pegangan saat mengembangkan halaman atau komponen ba
 - Nama pendek: `Krespace`
 - Logo text: `Krespace.`
 - Tone: praktis, santai, jelas, dan tidak terlalu teknis.
-- Positioning utama: website dan sistem sederhana untuk kerja yang lebih rapi.
+- Positioning utama: dari ide atau source code sampai benar-benar berjalan.
+- Pilar layanan: Build, Launch, Rescue, Upgrade, dan Care.
 
 ## Warna
 
@@ -83,17 +84,15 @@ Homepage wajib menjaga urutan section utama:
 
 1. Navbar
 2. Hero
-3. Lagi butuh yang mana?
-4. Dari Manual ke Lebih Rapi
-5. Yang bisa kami bantu
-6. Punya ide yang agak beda?
-7. Demo Project
-8. Tentang Krespace
-9. Cara Kerja
-10. Estimasi Awal
-11. Batasan Pengerjaan
-12. CTA akhir
-13. Footer
+3. Kamu sedang berada di tahap mana?
+4. Layanan Build, Launch, Rescue, Upgrade, dan Care
+5. Featured Work
+6. Kebijakan testimonial
+7. Before & After
+8. Cara Kerja
+9. Estimasi Awal
+10. CTA akhir
+11. Footer
 
 Saat menambah section baru:
 - Gunakan semantic HTML: `header`, `nav`, `main`, `section`, `footer`.
@@ -113,9 +112,9 @@ Saat menambah section baru:
 - Semua link WhatsApp harus memakai `whatsappUrl` dari `src/data/site.ts`.
 - Jangan hardcode URL WhatsApp di banyak komponen.
 - CTA utama:
-  - `Konsultasi via WhatsApp`
-  - `Tanya Detail`
-  - `Lihat Demo`
+  - `Ceritakan Kebutuhan`
+  - `Tanya Scope`
+  - `Lihat Hasil Kerja`
 - CTA harus jelas, tidak terlalu panjang, dan terlihat seperti tombol.
 
 ## SEO dan AI Crawler
@@ -131,7 +130,8 @@ Saat menambah section baru:
 
 - Konfigurasi site: `src/data/site.ts`
 - Data service: `src/data/services.ts`
-- Data demo: `src/data/demos.ts`
+- Content portfolio: `src/content/work/`
+- Content schema: `src/content.config.ts`
 - Data pricing: `src/data/pricing.ts`
 - Global style: `src/styles/global.css`
 - Tailwind tokens: `tailwind.config.mjs`
@@ -144,6 +144,9 @@ Saat menambah section baru:
 - Tidak ada Lucide CDN.
 - Homepage tetap satu H1.
 - Section utama tidak hilang.
+- Tidak ada link atau kartu demo lama.
+- Portfolio restricted hanya memakai data demonstrasi.
+- Draft testimonial tidak dipublikasikan sebagai review asli.
 - Mobile menu bisa dibuka.
 - WhatsApp URL masih dari config.
 - Tahun copyright mengikuti `site.copyrightYear`.

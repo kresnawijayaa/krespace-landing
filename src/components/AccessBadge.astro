@@ -1,0 +1,15 @@
+---
+interface Props {
+  access: "public" | "restricted" | "confidential";
+}
+
+const { access } = Astro.props;
+const config = {
+  public: { label: "Public", className: "bg-lime-200 text-lime-950" },
+  restricted: { label: "Restricted Access", className: "bg-yellow-200 text-yellow-950" },
+  confidential: { label: "Confidential", className: "bg-purple-200 text-purple-950" },
+};
+const item = config[access];
+---
+
+<span class={`neo-badge ${item.className}`}>{item.label}</span>

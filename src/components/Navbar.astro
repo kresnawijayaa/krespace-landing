@@ -1,37 +1,72 @@
 ---
 import Icon from "./Icon.astro";
-import { navLinks, whatsappUrl } from "../data/site";
+import { navLinks, whatsappUrlFor } from "../data/site";
+
+const contactMessage = `Halo Krespace, saya ingin menceritakan kebutuhan project.
+
+Kondisi saat ini:
+Hasil yang dibutuhkan:
+Urgensi:`;
+const serviceLinks = [
+  { label: "Semua Layanan", href: "/services", note: "Daftar layanan dan estimasi harga" },
+  { label: "Build", href: "/jasa-pembuatan-sistem-internal", note: "Buat dari awal" },
+  { label: "Launch", href: "/contact?service=launch", note: "Bawa source code online" },
+  { label: "Rescue", href: "/rescue", note: "Periksa project bermasalah" },
+  { label: "Upgrade", href: "/contact?service=upgrade", note: "Tambah fitur atau integrasi" },
+  { label: "Care", href: "/care", note: "Rawat setelah launch" },
+];
 ---
 
 <header class="fixed top-4 z-50 w-full px-4 md:px-8">
-  <nav class="mx-auto flex max-w-6xl items-center justify-between rounded-2xl bg-white px-6 py-4 shadow-neo neo-border" aria-label="Navigasi utama">
+  <nav class="mx-auto flex max-w-6xl items-center justify-between rounded-2xl bg-white px-5 py-3 shadow-neo neo-border" aria-label="Navigasi utama">
     <a href="/" class="group flex items-center gap-2">
-      <div class="flex h-8 w-8 items-center justify-center rounded-lg bg-dark text-white neo-border transition-transform group-hover:-rotate-6">
+      <div class="flex h-9 w-9 items-center justify-center rounded-lg bg-dark text-white neo-border transition-transform group-hover:-rotate-6">
         <Icon name="Blocks" class="h-5 w-5" />
       </div>
-      <span class="text-xl font-extrabold tracking-tight">Krespace.</span>
+      <span class="text-xl font-extrabold">Krespace.</span>
     </a>
 
-    <div class="hidden items-center space-x-8 font-semibold text-gray-700 md:flex">
-      {navLinks.map((link) => <a href={link.href} class="transition-colors hover:text-brand-blue">{link.label}</a>)}
+    <div class="hidden items-center gap-6 font-bold text-gray-700 lg:flex">
+      <details class="group relative">
+        <summary class="flex cursor-pointer list-none items-center gap-1 transition-colors hover:text-teal-700">
+          Layanan <Icon name="ChevronDown" class="h-4 w-4 transition-transform group-open:rotate-180" />
+        </summary>
+        <div class="absolute left-1/2 top-9 w-72 -translate-x-1/2 border-2 border-dark bg-white p-2 shadow-neo">
+          {serviceLinks.map((link) => (
+            <a href={link.href} class="block rounded-lg px-3 py-2.5 hover:bg-teal-50">
+              <span class="block font-extrabold text-dark">{link.label}</span>
+              <span class="text-xs font-medium text-gray-500">{link.note}</span>
+            </a>
+          ))}
+        </div>
+      </details>
+      {navLinks.filter((link) => link.label !== "Layanan").map((link) => <a href={link.href} class="transition-colors hover:text-teal-700">{link.label}</a>)}
     </div>
 
-    <div class="hidden md:flex">
-      <a href={whatsappUrl} target="_blank" rel="noopener noreferrer" class="neo-btn gap-2 bg-brand-green px-5 py-2 text-sm text-white">
-        <Icon name="MessageCircle" class="h-4 w-4" /> WhatsApp
+    <div class="hidden lg:flex">
+      <a href={whatsappUrlFor(contactMessage)} target="_blank" rel="noopener noreferrer" class="neo-btn gap-2 bg-teal-500 px-4 py-2 text-sm text-white">
+        <Icon name="MessageCircle" class="h-4 w-4" /> Ceritakan Kebutuhan
       </a>
     </div>
 
-    <button class="rounded-lg bg-gray-50 p-2 neo-border md:hidden" type="button" aria-label="Menu" aria-controls="mobile-menu" aria-expanded="false" data-menu-toggle>
+    <button class="rounded-lg bg-gray-50 p-2 neo-border lg:hidden" type="button" aria-label="Buka menu" aria-controls="mobile-menu" aria-expanded="false" data-menu-toggle>
       <Icon name="Menu" class="h-5 w-5" />
     </button>
   </nav>
 
-  <div id="mobile-menu" class="mx-auto mt-3 hidden max-w-6xl rounded-2xl bg-white p-4 shadow-neo neo-border md:hidden" data-mobile-menu>
-    <div class="grid gap-3 font-bold text-gray-700">
-      {navLinks.map((link) => <a href={link.href} class="rounded-xl px-3 py-2 hover:bg-blue-50">{link.label}</a>)}
-      <a href={whatsappUrl} target="_blank" rel="noopener noreferrer" class="neo-btn mt-2 gap-2 bg-brand-green px-5 py-3 text-white">
-        <Icon name="MessageCircle" class="h-4 w-4" /> WhatsApp
+  <div id="mobile-menu" class="mx-auto mt-3 hidden max-w-6xl rounded-2xl bg-white p-4 shadow-neo neo-border lg:hidden" data-mobile-menu>
+    <div class="grid gap-1 font-bold text-gray-700">
+      <details class="border-b-2 border-gray-100 pb-2">
+        <summary class="flex cursor-pointer list-none items-center justify-between rounded-lg px-3 py-2">
+          Layanan <Icon name="ChevronDown" class="h-4 w-4" />
+        </summary>
+        <div class="grid pl-3">
+          {serviceLinks.map((link) => <a href={link.href} class="rounded-lg px-3 py-2 text-sm hover:bg-teal-50">{link.label}</a>)}
+        </div>
+      </details>
+      {navLinks.filter((link) => link.label !== "Layanan").map((link) => <a href={link.href} class="rounded-lg px-3 py-2 hover:bg-teal-50">{link.label}</a>)}
+      <a href={whatsappUrlFor(contactMessage)} target="_blank" rel="noopener noreferrer" class="neo-btn mt-3 gap-2 bg-teal-500 px-5 py-3 text-white">
+        <Icon name="MessageCircle" class="h-4 w-4" /> Ceritakan Kebutuhan
       </a>
     </div>
   </div>
@@ -44,6 +79,15 @@ import { navLinks, whatsappUrl } from "../data/site";
   button?.addEventListener("click", () => {
     const isOpen = button.getAttribute("aria-expanded") === "true";
     button.setAttribute("aria-expanded", String(!isOpen));
+    button.setAttribute("aria-label", isOpen ? "Buka menu" : "Tutup menu");
     menu?.classList.toggle("hidden", isOpen);
+  });
+
+  menu?.querySelectorAll("a").forEach((link) => {
+    link.addEventListener("click", () => {
+      menu.classList.add("hidden");
+      button?.setAttribute("aria-expanded", "false");
+      button?.setAttribute("aria-label", "Buka menu");
+    });
   });
 </script>

@@ -1,15 +1,27 @@
 ---
 import Icon from "./Icon.astro";
-import { whatsappUrl } from "../data/site";
+import { whatsappUrlFor } from "../data/site";
+
+const message = `Halo Krespace, saya ingin menceritakan kebutuhan project.
+
+Link/source code jika ada:
+Kondisi saat ini:
+Hasil yang dibutuhkan:
+Urgensi:`;
 ---
 
-<section class="border-t-2 border-dark bg-brand-blue px-4 py-20 text-white md:px-8">
-  <div class="neo-card mx-auto max-w-4xl bg-dark p-10 text-center text-white md:p-16">
-    <h2 class="mb-6 text-3xl font-extrabold md:text-5xl">Punya proses kerja yang masih manual?</h2>
-    <p class="mx-auto mb-10 max-w-2xl text-lg text-gray-300">Ceritakan dulu kebutuhannya. Tidak harus teknis. Nanti kita bantu lihat apakah bisa dibuat lebih rapi dengan sistem sederhana.</p>
-    <a href={whatsappUrl} target="_blank" rel="noopener noreferrer" class="neo-btn border-dark bg-brand-green px-8 py-4 text-lg text-white shadow-[4px_4px_0px_0px_#fff] hover:shadow-[6px_6px_0px_0px_#fff]">
-      <Icon name="MessageCircle" class="mr-2 h-5 w-5" /> Konsultasi via WhatsApp
-    </a>
-    <p class="mt-6 text-sm font-medium text-gray-400">Bisa mulai dari ngobrol santai dulu.</p>
+<section class="border-t-2 border-dark bg-teal-500 px-4 py-20 md:px-8">
+  <div class="mx-auto max-w-5xl">
+    <div class="relative border-2 border-dark bg-dark p-8 text-white shadow-[8px_8px_0_0_#fcd34d] md:p-14">
+      <p class="mb-4 text-sm font-extrabold uppercase text-teal-300">Build. Launch. Rescue. Upgrade. Care.</p>
+      <h2 class="max-w-4xl text-3xl font-extrabold md:text-5xl">Sudah punya ide, source code, atau project yang belum beres?</h2>
+      <p class="mt-5 max-w-2xl text-lg font-medium leading-relaxed text-gray-300">Ceritakan kondisinya. Tidak harus teknis. Kami bantu melihat langkah berikutnya yang paling masuk akal.</p>
+      <div class="mt-8 flex flex-col gap-4 sm:flex-row">
+        <a href={whatsappUrlFor(message)} target="_blank" rel="noopener noreferrer" class="neo-btn gap-2 border-dark bg-yellow-300 px-7 py-3.5 text-dark shadow-[4px_4px_0_0_#fff]">
+          <Icon name="MessageCircle" class="h-5 w-5" /> Ceritakan Kebutuhan
+        </a>
+        <a href="/work" class="inline-flex items-center gap-2 px-3 py-3 font-extrabold text-white hover:text-teal-200">Lihat hasil kerja <Icon name="ArrowRight" class="h-5 w-5" /></a>
+      </div>
+    </div>
   </div>
 </section>

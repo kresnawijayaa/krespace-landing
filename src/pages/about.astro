@@ -1,0 +1,32 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Navbar from "../components/Navbar.astro";
+import Footer from "../components/Footer.astro";
+import FinalCTA from "../components/FinalCTA.astro";
+---
+
+<BaseLayout title="Tentang Krespace Studio" description="Krespace adalah partner teknis untuk build, launch, rescue, upgrade, dan care website atau sistem." canonicalPath="/about">
+  <Navbar />
+  <main>
+    <section class="border-b-2 border-dark bg-purple-100 px-4 pb-16 pt-32 md:px-8">
+      <div class="mx-auto max-w-6xl">
+        <p class="text-sm font-extrabold uppercase text-purple-700">Tentang Krespace</p>
+        <h1 class="mt-4 max-w-4xl text-4xl font-extrabold leading-tight md:text-6xl">Partner teknis untuk tahap setelah “kodenya sudah ada”</h1>
+        <p class="mt-6 max-w-3xl text-lg font-medium leading-relaxed text-gray-700">Krespace membantu dari kebutuhan awal sampai project online, diperbaiki, dikembangkan, dan dirawat. Fokusnya bukan membuat teknologi terdengar rumit, tetapi membuat langkah berikutnya menjadi jelas.</p>
+      </div>
+    </section>
+    <section class="px-4 py-20 md:px-8">
+      <div class="mx-auto grid max-w-6xl gap-12 md:grid-cols-2">
+        <div>
+          <h2 class="text-3xl font-extrabold">Yang kami anggap penting</h2>
+          <p class="mt-5 text-lg leading-relaxed text-gray-700">Koding hanyalah sebagian dari pekerjaan. Project juga membutuhkan pemeriksaan, konfigurasi, deployment, dokumentasi, keamanan akses, handover, dan orang yang bisa membantu ketika kondisi berubah.</p>
+        </div>
+        <div class="grid gap-4">
+          {["Scope dan batasan dibuat jelas", "Data sensitif tidak dijadikan materi portfolio", "Tidak membuat klaim hasil tanpa bukti", "Solusi mengikuti kondisi project, bukan memaksakan stack", "Ada dokumentasi untuk perubahan penting"].map((item) => <div class="rounded-xl border-2 border-dark bg-teal-50 p-4 font-bold shadow-neo-sm">{item}</div>)}
+        </div>
+      </div>
+    </section>
+    <FinalCTA />
+  </main>
+  <Footer />
+</BaseLayout>

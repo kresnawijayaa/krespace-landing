@@ -1,0 +1,143 @@
+---
+import { getCollection, render, type CollectionEntry } from "astro:content";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Navbar from "../../components/Navbar.astro";
+import Footer from "../../components/Footer.astro";
+import AccessBadge from "../../components/AccessBadge.astro";
+import CaseStudyGallery from "../../components/CaseStudyGallery.astro";
+import TestimonialCard from "../../components/TestimonialCard.astro";
+import FinalCTA from "../../components/FinalCTA.astro";
+
+export async function getStaticPaths() {
+  const works = await getCollection("work");
+  return works.map((work) => ({
+    params: { slug: work.id },
+    props: { work },
+  }));
+}
+
+interface Props {
+  work: CollectionEntry<"work">;
+}
+
+const { work } = Astro.props;
+const { data } = work;
+const { Content } = await render(work);
+const galleryImages = data.gallery ?? [
+  {
+    src: data.cover,
+    alt: data.coverAlt,
+    caption: "Tampilan utama project.",
+    width: data.coverWidth,
+    height: data.coverHeight,
+  },
+];
+const caseStudySchema = {
+  "@context": "https://schema.org",
+  "@type": "CreativeWork",
+  name: data.title,
+  description: data.summary,
+  dateCreated: String(data.year),
+  creator: {
+    "@type": "Organization",
+    name: "Krespace Studio",
+  },
+};
+---
+
+<BaseLayout
+  title={`${data.title} | Hasil Kerja Krespace`}
+  description={data.summary}
+  canonicalPath={`/work/${work.id}`}
+  jsonLd={caseStudySchema}
+>
+  <Navbar />
+  <main>
+    <section class="border-b-2 border-dark bg-teal-50 px-4 pb-16 pt-32 md:px-8">
+      <div class="mx-auto max-w-6xl">
+        <a href="/work" class="mb-7 inline-flex font-bold text-teal-800 hover:underline">← Semua hasil kerja</a>
+        <div class="flex flex-wrap gap-2">
+          <AccessBadge access={data.access} />
+          <span class="neo-badge bg-white">{data.category}</span>
+          {data.demoData && <span class="neo-badge bg-yellow-100">Data demonstrasi</span>}
+        </div>
+        <p class="mt-8 text-sm font-extrabold uppercase text-gray-500">{data.clientDisplayName} · {data.industry} · {data.year}</p>
+        <h1 class="mt-3 max-w-4xl text-4xl font-extrabold leading-tight md:text-6xl">{data.title}</h1>
+        <p class="mt-6 max-w-3xl text-lg font-medium leading-relaxed text-gray-700 md:text-xl">{data.summary}</p>
+        <div class="mt-7 flex flex-wrap gap-2">
+          {data.services.map((service) => <span class="neo-badge bg-white">{service}</span>)}
+        </div>
+      </div>
+    </section>
+
+    <div class="mx-auto max-w-6xl space-y-20 px-4 py-20 md:px-8">
+      <CaseStudyGallery images={galleryImages} accessNote={data.accessNote} isDemo={data.demoData} />
+
+      <section class="grid gap-10 md:grid-cols-2">
+        <div>
+          <p class="mb-3 text-sm font-extrabold uppercase text-orange-700">Tantangan</p>
+          <h2 class="mb-6 text-3xl font-extrabold">Kondisi sebelum dibantu</h2>
+          <ul class="grid gap-3">
+            {data.challenge.map((item) => <li class="border-l-4 border-orange-500 pl-4 font-medium text-gray-700">{item}</li>)}
+          </ul>
+        </div>
+        <div>
+          <p class="mb-3 text-sm font-extrabold uppercase text-teal-700">Solusi</p>
+          <h2 class="mb-6 text-3xl font-extrabold">Apa yang dibuat</h2>
+          <ul class="grid gap-3">
+            {data.solution.map((item) => <li class="border-l-4 border-teal-500 pl-4 font-medium text-gray-700">{item}</li>)}
+          </ul>
+        </div>
+      </section>
+
+      <section class="border-y-2 border-dark bg-dark px-6 py-10 text-white md:px-10">
+        <p class="mb-3 text-sm font-extrabold uppercase text-yellow-300">Fitur utama</p>
+        <h2 class="mb-8 text-3xl font-extrabold">Ruang lingkup yang terlihat</h2>
+        <div class="grid gap-[2px] bg-gray-700 md:grid-cols-2 lg:grid-cols-3">
+          {data.features.map((feature, index) => <div class="bg-dark p-5"><span class="mr-3 text-sm font-extrabold text-teal-300">0{index + 1}</span><span class="font-bold">{feature}</span></div>)}
+        </div>
+      </section>
+
+      <section class="grid gap-8 lg:grid-cols-3">
+        <div>
+          <p class="mb-3 text-sm font-extrabold uppercase text-purple-700">Kontribusi Krespace</p>
+          <h2 class="text-3xl font-extrabold">Yang benar-benar dikerjakan</h2>
+        </div>
+        <ul class="grid gap-3 lg:col-span-2 md:grid-cols-2">
+          {data.contributions.map((item) => <li class="rounded-xl border-2 border-dark bg-purple-50 p-4 font-bold">{item}</li>)}
+        </ul>
+      </section>
+
+      <section class="grid gap-8 lg:grid-cols-3">
+        <div>
+          <p class="mb-3 text-sm font-extrabold uppercase text-lime-700">Hasil</p>
+          <h2 class="text-3xl font-extrabold">Perubahan yang tersedia</h2>
+        </div>
+        <ul class="grid gap-4 lg:col-span-2">
+          {data.results.map((item) => <li class="rounded-xl border-2 border-dark bg-lime-100 p-5 font-bold">{item}</li>)}
+        </ul>
+      </section>
+
+      {data.testimonialStatus === "approved" && data.testimonial && (
+        <TestimonialCard
+          quote={data.testimonial.quote}
+          name={data.testimonial.name}
+          role={data.testimonial.role}
+        />
+      )}
+
+      <section>
+        <h2 class="mb-5 text-2xl font-extrabold">Teknologi</h2>
+        <div class="flex flex-wrap gap-2">
+          {data.technologies.map((technology) => <span class="neo-badge bg-gray-100">{technology}</span>)}
+        </div>
+      </section>
+
+      <div class="case-study-note rounded-xl border-2 border-dark bg-yellow-50 p-5 text-gray-700">
+        <Content />
+      </div>
+    </div>
+    <FinalCTA />
+  </main>
+  <Footer />
+</BaseLayout>

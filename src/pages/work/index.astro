@@ -1,0 +1,43 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Navbar from "../../components/Navbar.astro";
+import Footer from "../../components/Footer.astro";
+import WorkCard from "../../components/WorkCard.astro";
+
+const works = (await getCollection("work")).sort((a, b) => a.data.priority - b.data.priority);
+---
+
+<BaseLayout
+  title="Hasil Kerja | Krespace Studio"
+  description="Studi kasus website, sistem internal, location-based tool, deployment, dan payment integration yang dikerjakan Krespace."
+  canonicalPath="/work"
+>
+  <Navbar />
+  <main>
+    <section class="border-b-2 border-dark bg-dark px-4 pb-16 pt-32 text-white md:px-8 md:pb-20">
+      <div class="mx-auto max-w-6xl">
+        <p class="mb-4 text-sm font-extrabold uppercase text-teal-300">Portfolio Krespace</p>
+        <h1 class="max-w-4xl text-4xl font-extrabold leading-tight md:text-6xl">Hasil kerja yang dibuat untuk benar-benar digunakan</h1>
+        <p class="mt-6 max-w-2xl text-lg font-medium leading-relaxed text-gray-300">
+          Fokus pada masalah, solusi, dan kontribusi yang dikerjakan. Project restricted menggunakan nama generik dan data demonstrasi.
+        </p>
+      </div>
+    </section>
+    <section class="px-4 py-20 md:px-8">
+      <div class="mx-auto grid max-w-6xl gap-7 md:grid-cols-2">
+        {works.map((work) => <WorkCard work={work} />)}
+      </div>
+    </section>
+    <section class="border-y-2 border-dark bg-yellow-100 px-4 py-12 md:px-8">
+      <div class="mx-auto flex max-w-6xl flex-col justify-between gap-5 md:flex-row md:items-center">
+        <div>
+          <h2 class="text-2xl font-extrabold">Tentang batas akses portfolio</h2>
+          <p class="mt-2 max-w-2xl font-medium text-gray-700">Screenshot, nama, URL, dan data mengikuti izin publikasi. Credential, data pengguna, transaksi, dan detail keamanan tidak ditampilkan.</p>
+        </div>
+        <a href="/privacy" class="neo-btn shrink-0 bg-white px-5 py-3">Baca prinsip privasi</a>
+      </div>
+    </section>
+  </main>
+  <Footer />
+</BaseLayout>

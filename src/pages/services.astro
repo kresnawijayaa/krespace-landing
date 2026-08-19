@@ -1,0 +1,153 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Navbar from "../components/Navbar.astro";
+import Footer from "../components/Footer.astro";
+import Icon from "../components/Icon.astro";
+import { services } from "../data/services";
+import { pricing } from "../data/pricing";
+import { whatsappUrlFor, site } from "../data/site";
+
+const serviceMessage = `Halo Krespace, saya ingin mengajukan layanan.
+
+Layanan yang dibutuhkan:
+Kondisi atau kebutuhan:
+Target waktu:
+Perkiraan budget:`;
+
+const serviceSchema = {
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  name: "Layanan Krespace Studio",
+  url: `${site.siteUrl}/services`,
+  itemListElement: services.map((service, index) => ({
+    "@type": "ListItem",
+    position: index + 1,
+    item: {
+      "@type": "Service",
+      name: service.name,
+      description: service.result,
+      provider: {
+        "@type": "Organization",
+        name: site.brandName,
+        url: site.siteUrl,
+      },
+    },
+  })),
+};
+---
+
+<BaseLayout
+  title="Layanan Digital Krespace Studio"
+  description="Daftar layanan Krespace Studio untuk pembuatan, peluncuran, perbaikan, pengembangan, dan perawatan website atau sistem."
+  canonicalPath="/services"
+  jsonLd={serviceSchema}
+>
+  <Navbar />
+  <main>
+    <section class="border-b-2 border-dark bg-teal-50 px-4 pb-16 pt-32 md:px-8 md:pb-20">
+      <div class="mx-auto grid max-w-6xl gap-10 lg:grid-cols-[1.4fr_0.6fr] lg:items-end">
+        <div>
+          <p class="text-sm font-extrabold uppercase text-teal-700">Layanan Krespace Studio</p>
+          <h1 class="mt-4 max-w-4xl text-4xl font-extrabold leading-tight md:text-6xl">Layanan digital dari build sampai perawatan</h1>
+          <p class="mt-6 max-w-3xl text-lg font-medium leading-relaxed text-gray-700">
+            Krespace menyediakan jasa pengembangan website dan sistem berbasis project. Scope, hasil pekerjaan, jadwal, dan biaya dikonfirmasi sebelum pengerjaan dimulai.
+          </p>
+        </div>
+        <a href={whatsappUrlFor(serviceMessage)} target="_blank" rel="noopener noreferrer" class="neo-btn w-full gap-2 bg-teal-500 px-6 py-3.5 text-white sm:w-fit lg:justify-self-end">
+          <Icon name="MessageCircle" class="h-5 w-5" /> Ajukan kebutuhan
+        </a>
+      </div>
+    </section>
+
+    <section class="px-4 py-16 md:px-8 md:py-20" aria-labelledby="daftar-layanan">
+      <div class="mx-auto max-w-6xl">
+        <div class="mb-10 max-w-3xl">
+          <p class="text-sm font-extrabold uppercase text-purple-700">Daftar layanan</p>
+          <h2 id="daftar-layanan" class="mt-3 text-3xl font-extrabold md:text-5xl">Pilih sesuai kondisi project</h2>
+        </div>
+        <div class="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+          {services.map((service, index) => (
+            <article class={`neo-card flex flex-col p-6 ${index === 0 ? "lg:col-span-2" : ""}`}>
+              <div class={`flex h-12 w-12 items-center justify-center rounded-xl border-2 border-dark shadow-neo-sm ${service.bgClass}`}>
+                <Icon name={service.icon} class="h-6 w-6" />
+              </div>
+              <h3 class="mt-6 text-2xl font-extrabold">{service.name}</h3>
+              <p class="mt-2 font-medium leading-relaxed text-gray-700">{service.result}</p>
+              <ul class="my-6 grid gap-2 text-sm font-semibold text-gray-600">
+                {service.examples.map((example) => (
+                  <li class="flex items-start gap-2"><Icon name="CheckCircle2" class="mt-0.5 h-4 w-4 shrink-0 text-teal-700" /> {example}</li>
+                ))}
+              </ul>
+              <a href={service.href} class="mt-auto inline-flex items-center gap-2 font-extrabold text-dark underline decoration-2 underline-offset-4 hover:text-teal-700">
+                {service.cta} <Icon name="ArrowRight" class="h-4 w-4" />
+              </a>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="border-y-2 border-dark bg-yellow-50 px-4 py-16 md:px-8 md:py-20" aria-labelledby="harga-layanan">
+      <div class="mx-auto max-w-6xl">
+        <div class="grid gap-5 md:grid-cols-2 md:items-end">
+          <div>
+            <p class="text-sm font-extrabold uppercase text-yellow-700">Harga layanan</p>
+            <h2 id="harga-layanan" class="mt-3 text-3xl font-extrabold md:text-5xl">Estimasi awal yang transparan</h2>
+          </div>
+          <p class="font-medium leading-relaxed text-gray-700">Nominal berikut adalah harga mulai. Harga final mengikuti scope, teknologi, akses, urgensi, dan risiko pengerjaan.</p>
+        </div>
+        <div class="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {pricing.map((item) => (
+            <article class="border-2 border-dark bg-white p-5 shadow-neo-sm">
+              <p class="text-sm font-extrabold uppercase text-gray-500">{item.title}</p>
+              <p class="mt-3 text-2xl font-extrabold">Mulai {item.price}</p>
+              <p class="mt-3 text-sm leading-relaxed text-gray-600">{item.description}</p>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="px-4 py-16 md:px-8 md:py-20" aria-labelledby="proses-pemesanan">
+      <div class="mx-auto grid max-w-6xl gap-10 lg:grid-cols-[0.8fr_1.2fr]">
+        <div>
+          <p class="text-sm font-extrabold uppercase text-orange-700">Pemesanan & pembayaran</p>
+          <h2 id="proses-pemesanan" class="mt-3 text-3xl font-extrabold md:text-4xl">Transaksi dimulai setelah scope disetujui</h2>
+        </div>
+        <div class="grid gap-4">
+          {[
+            ["1", "Pengajuan kebutuhan", "Pelanggan mengirim kebutuhan melalui WhatsApp atau email."],
+            ["2", "Konfirmasi scope", "Krespace mengirim rincian pekerjaan, hasil, jadwal, dan biaya untuk disetujui."],
+            ["3", "Invoice dan pembayaran", "Pembayaran dilakukan berdasarkan invoice dan ketentuan pembayaran yang tercantum pada penawaran."],
+            ["4", "Pengerjaan dan penyerahan", "Pekerjaan dimulai sesuai kesepakatan, kemudian hasil diuji dan diserahkan kepada pelanggan."],
+          ].map(([number, title, description]) => (
+            <div class="grid grid-cols-[2.75rem_1fr] gap-4 border-b-2 border-gray-200 pb-4 last:border-0">
+              <span class="flex h-11 w-11 items-center justify-center rounded-full border-2 border-dark bg-purple-100 font-extrabold">{number}</span>
+              <div>
+                <h3 class="font-extrabold">{title}</h3>
+                <p class="mt-1 text-sm leading-relaxed text-gray-600">{description}</p>
+              </div>
+            </div>
+          ))}
+          <div class="mt-2 border-2 border-dark bg-orange-50 p-5 shadow-neo-sm">
+            <h3 class="font-extrabold">Pembatalan dan pengembalian dana</h3>
+            <p class="mt-2 text-sm leading-relaxed text-gray-700">Permintaan pembatalan atau pengembalian dana ditinjau berdasarkan tahap pekerjaan, biaya yang sudah timbul, dan ketentuan pada penawaran yang telah disetujui. Hubungi Krespace untuk pemeriksaan transaksi.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="border-t-2 border-dark bg-purple-500 px-4 py-14 text-white md:px-8">
+      <div class="mx-auto flex max-w-6xl flex-col justify-between gap-6 md:flex-row md:items-center">
+        <div>
+          <h2 class="text-3xl font-extrabold">Butuh penjelasan sebelum memesan?</h2>
+          <p class="mt-2 font-medium text-purple-50">Konsultasi awal membantu menentukan layanan dan scope yang sesuai.</p>
+        </div>
+        <a href={whatsappUrlFor(serviceMessage)} target="_blank" rel="noopener noreferrer" class="neo-btn shrink-0 gap-2 bg-yellow-300 px-6 py-3.5 text-dark">
+          <Icon name="MessageCircle" class="h-5 w-5" /> Hubungi Krespace
+        </a>
+      </div>
+    </section>
+  </main>
+  <Footer />
+</BaseLayout>

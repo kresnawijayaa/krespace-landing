@@ -1,0 +1,38 @@
+---
+import { getCollection } from "astro:content";
+
+const testimonials = (await getCollection("work", ({ data }) =>
+  data.testimonialStatus === "approved" && Boolean(data.testimonial),
+))
+  .sort((a, b) => a.data.priority - b.data.priority)
+  .map((work) => ({
+    ...work.data.testimonial!,
+    project: work.data.title,
+  }));
+---
+
+{testimonials.length > 0 && (
+  <section class="border-b-2 border-dark bg-purple-100 px-4 py-16 md:px-8" aria-labelledby="review-heading">
+    <div class="mx-auto max-w-6xl">
+      <div class="mb-9 max-w-3xl">
+        <p class="mb-3 text-sm font-extrabold uppercase text-purple-700">Review client</p>
+        <h2 id="review-heading" class="text-3xl font-extrabold md:text-4xl">Pengalaman setelah project digunakan</h2>
+      </div>
+      <div class={`grid gap-6 ${testimonials.length > 1 ? "md:grid-cols-2" : ""}`}>
+        {testimonials.map((testimonial) => (
+          <article class="relative overflow-hidden rounded-2xl border-2 border-dark bg-white p-6 shadow-neo md:p-8">
+            <span class="absolute -right-2 -top-10 select-none text-[9rem] font-extrabold leading-none text-purple-200" aria-hidden="true">&ldquo;</span>
+            <div class="relative">
+              <p class="text-lg font-bold leading-relaxed text-dark md:text-xl">&ldquo;{testimonial.quote}&rdquo;</p>
+              <footer class="mt-6 border-t-2 border-purple-100 pt-5">
+                <cite class="not-italic font-extrabold text-dark">{testimonial.name}</cite>
+                <p class="mt-1 text-sm font-semibold text-purple-900">{testimonial.role}</p>
+                <p class="mt-2 text-xs font-bold uppercase text-gray-500">Project: {testimonial.project}</p>
+              </footer>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+)}

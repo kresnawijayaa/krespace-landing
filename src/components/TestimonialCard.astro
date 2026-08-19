@@ -1,0 +1,27 @@
+---
+interface Props {
+  quote: string;
+  name: string;
+  role: string;
+}
+
+const { quote, name, role } = Astro.props;
+---
+
+<section aria-labelledby="testimonial-heading" class="relative overflow-hidden border-2 border-dark bg-purple-100 p-7 shadow-neo md:p-10">
+  <span class="absolute -right-2 -top-10 select-none text-[10rem] font-extrabold leading-none text-purple-300/60" aria-hidden="true">“</span>
+  <div class="relative max-w-4xl">
+    <p class="mb-3 text-sm font-extrabold uppercase text-purple-800">Review yang sudah disetujui</p>
+    <h2 id="testimonial-heading" class="sr-only">Apa kata pengguna setelah project digunakan</h2>
+    <blockquote class="text-xl font-bold leading-relaxed text-dark md:text-2xl">“{quote}”</blockquote>
+    <footer class="mt-7 flex items-center gap-4">
+      <div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-full border-2 border-dark bg-yellow-300 text-lg font-extrabold">
+        {name.charAt(0)}
+      </div>
+      <div>
+        <cite class="not-italic font-extrabold text-dark">{name}</cite>
+        <p class="text-sm font-semibold text-purple-900">{role}</p>
+      </div>
+    </footer>
+  </div>
+</section>

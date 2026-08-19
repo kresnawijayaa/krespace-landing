@@ -1,0 +1,33 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Navbar from "../components/Navbar.astro";
+import Footer from "../components/Footer.astro";
+---
+
+<BaseLayout title="Privasi & Keamanan Portfolio | Krespace Studio" description="Prinsip Krespace dalam menjaga data project, screenshot, credential, dan materi portfolio." canonicalPath="/privacy">
+  <Navbar />
+  <main class="px-4 pb-20 pt-32 md:px-8">
+    <article class="mx-auto max-w-4xl">
+      <p class="text-sm font-extrabold uppercase text-purple-700">Privasi & keamanan</p>
+      <h1 class="mt-4 text-4xl font-extrabold leading-tight md:text-6xl">Hasil kerja boleh terlihat. Data sensitif tetap dijaga.</h1>
+      <p class="mt-6 text-lg font-medium leading-relaxed text-gray-700">Krespace membatasi materi portfolio berdasarkan izin dan tingkat akses project. Halaman ini menjelaskan pendekatan umum, bukan pengganti perjanjian kerahasiaan project tertentu.</p>
+      <div class="mt-14 space-y-10">
+        <section>
+          <h2 class="text-3xl font-extrabold">Yang dapat ditampilkan</h2>
+          <p class="mt-4 leading-relaxed text-gray-700">Deskripsi umum, kontribusi, fitur non-sensitif, visual dengan data demonstrasi, teknologi umum, serta nama atau logo hanya jika ada izin.</p>
+        </section>
+        <section>
+          <h2 class="text-3xl font-extrabold">Yang tidak ditampilkan</h2>
+          <ul class="mt-5 grid gap-3 md:grid-cols-2">
+            {["Credential dan secret key", "Data pengguna atau customer", "Transaksi dan data keuangan asli", "Endpoint atau arsitektur sensitif", "URL aplikasi internal", "Dokumen dan kontrak project"].map((item) => <li class="rounded-xl border-2 border-dark bg-orange-50 p-4 font-bold">{item}</li>)}
+          </ul>
+        </section>
+        <section>
+          <h2 class="text-3xl font-extrabold">Testimonial</h2>
+          <p class="mt-4 leading-relaxed text-gray-700">Draft review tidak dipublikasikan sebagai testimonial asli. Isi dan identitas hanya ditampilkan setelah disesuaikan dengan pengalaman nyata dan disetujui pemberi review.</p>
+        </section>
+      </div>
+    </article>
+  </main>
+  <Footer />
+</BaseLayout>
